@@ -1,0 +1,154 @@
+{%- comment -%}
+  Section: Our Story Page
+  Hero, mission stats, team info, brand partners
+{%- endcomment -%}
+
+{%- comment -%} Hero {%- endcomment -%}
+<div class="story-hero">
+  <div class="section-eyebrow">{{ section.settings.eyebrow }}</div>
+  <h1 class="story-hero__title">{{ section.settings.title }}</h1>
+  <p class="story-hero__subtitle">{{ section.settings.subtitle }}</p>
+</div>
+
+{%- comment -%} Mission Stats {%- endcomment -%}
+<div class="story-stats">
+  {%- for block in section.blocks -%}
+    {%- if block.type == 'stat' -%}
+      <div class="story-stat" {{ block.shopify_attributes }}>
+        <div class="story-stat__number">{{ block.settings.number }}</div>
+        <div class="story-stat__label">{{ block.settings.label }}</div>
+      </div>
+    {%- endif -%}
+  {%- endfor -%}
+</div>
+
+{%- comment -%} Content {%- endcomment -%}
+<div class="story-content">
+  {%- if section.settings.content_html != blank -%}
+    {{ section.settings.content_html }}
+  {%- else -%}
+    <h2>Our Story</h2>
+    <p>Homeboy Threads is the retail arm of Homeboy Industries, the world's largest gang intervention and reentry program based in Los Angeles. Founded by Father Greg Boyle in 1988, Homeboy Industries provides hope, training, and support to formerly gang-involved and previously incarcerated people.</p>
+    <p>Through Homeboy Threads, premium fashion brands donate their overstock, samples, and returned items to us. We inspect and grade every piece, then sell it at accessible prices. 100% of the revenue goes directly back into Homeboy Industries programming.</p>
+    <h2>The Impact</h2>
+    <p>Every purchase you make directly funds job training, mental health services, substance abuse treatment, tattoo removal, and educational programs. Our trainees learn marketable skills while working in our retail operations — from photography and merchandising to customer service and logistics.</p>
+    <h2>Our Brand Partners</h2>
+    <p>We partner with brands who share our vision of fashion as a force for good. These partners donate their inventory to us, keeping clothing out of landfills while supporting life-changing programs. It's a model that works for everyone.</p>
+  {%- endif -%}
+</div>
+
+{%- comment -%} Brand Partners Grid {%- endcomment -%}
+<div class="story-partners">
+  <div class="section-eyebrow" style="text-align:center;">Brand partners</div>
+  <h2 class="section-title" style="text-align:center;margin-bottom:8px;">Brands that <em>give back</em></h2>
+  <div class="story-partners__grid">
+    {%- for block in section.blocks -%}
+      {%- if block.type == 'partner' -%}
+        <div class="story-partner-card" {{ block.shopify_attributes }}>
+          <div class="story-partner-card__name">{{ block.settings.name }}</div>
+          <div class="story-partner-card__desc">{{ block.settings.description }}</div>
+        </div>
+      {%- endif -%}
+    {%- endfor -%}
+  </div>
+</div>
+
+{%- comment -%} Homeboy Industries Embed {%- endcomment -%}
+{%- if section.settings.embed_url != blank -%}
+  <div style="padding:60px var(--page-gutter);text-align:center;">
+    <div class="section-eyebrow">Learn more</div>
+    <h2 class="section-title" style="margin-bottom:24px;">Homeboy Industries</h2>
+    <p style="font-size:15px;color:var(--mid);max-width:600px;margin:0 auto 32px;line-height:1.7;">{{ section.settings.embed_description }}</p>
+    <a href="{{ section.settings.embed_url }}" class="btn-primary" target="_blank" rel="noopener">Visit Homeboy Industries</a>
+  </div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Our Story Page",
+  "tag": "section",
+  "class": "our-story-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Our story"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Page title",
+      "default": "Fashion that funds futures"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Homeboy Threads is the retail arm of Homeboy Industries — the world's largest gang intervention and reentry program. Every purchase funds job training, mental health services, and second chances."
+    },
+    {
+      "type": "html",
+      "id": "content_html",
+      "label": "Main content (HTML, leave blank for default)"
+    },
+    {
+      "type": "url",
+      "id": "embed_url",
+      "label": "Homeboy Industries URL",
+      "default": "https://www.homeboyindustries.org"
+    },
+    {
+      "type": "textarea",
+      "id": "embed_description",
+      "label": "Embed description",
+      "default": "Learn more about the programs your purchase supports at Homeboy Industries."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "stat",
+      "name": "Mission Stat",
+      "limit": 6,
+      "settings": [
+        {
+          "type": "text",
+          "id": "number",
+          "label": "Number",
+          "default": "72%"
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "recidivism reduction"
+        }
+      ]
+    },
+    {
+      "type": "partner",
+      "name": "Brand Partner",
+      "limit": 12,
+      "settings": [
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Brand name",
+          "default": "Brand Name"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description",
+          "default": "Brand description and partnership details."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Our Story Page"
+    }
+  ]
+}
+{% endschema %}

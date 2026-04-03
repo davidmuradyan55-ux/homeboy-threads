@@ -1,0 +1,48 @@
+{
+  "current": {
+    "color_cream": "#F5F0E8",
+    "color_warm_white": "#FAF8F4",
+    "color_charcoal": "#1C1C1A",
+    "color_mid": "#5A5750",
+    "color_muted": "#9A958E",
+    "color_accent": "#C84B2F",
+    "color_accent_light": "#E8D5CE",
+    "color_forest": "#2D4A35",
+    "color_forest_light": "#D4E0D6",
+    "color_gold": "#B8963E",
+    "color_gold_light": "#F0E6C8",
+    "impact_counter_number": "4,218",
+    "impact_counter_label": "lbs diverted",
+    "free_shipping_threshold": "75",
+    "seo_homepage_title": "Homeboy Threads — Donated Designer Clothing | Shop for Good",
+    "seo_homepage_description": "Shop donated clothing from premium brands. Every purchase funds reentry programs and job training through Homeboy Industries in Los Angeles. Free shipping on orders over $75.",
+    "social_instagram_link": "",
+    "social_tiktok_link": "",
+    "social_facebook_link": "",
+    "social_twitter_link": "",
+    "sections": {
+      "announcement-bar": {
+        "type": "announcement-bar",
+        "settings": {
+          "message": "New donation drop — limited quantities. Free shipping over $75 →",
+          "link": "/collections/new-with-tags"
+        }
+      },
+      "header": {
+        "type": "header",
+        "settings": {}
+      },
+      "footer": {
+        "type": "footer",
+        "settings": {
+          "tagline": "The retail arm of Homeboy Industries. Premium donated clothing sold to fund reentry programs, job training, and second chances in Los Angeles.",
+          "copyright_text": "Homeboy Threads · A Homeboy Industries initiative · Los Angeles, CA",
+          "mission_text": "Every purchase funds a second chance."
+        }
+      }
+    },
+    "content_for_index": [
+
+    ]
+  }
+}

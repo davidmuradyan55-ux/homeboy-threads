@@ -1,0 +1,17 @@
+{%- comment -%}
+  Impact line snippet
+  Usage: {% render 'impact-line', product: product %}
+  Displays "Sale funds X hrs job training" based on impact_hours metafield
+{%- endcomment -%}
+
+{%- assign impact_hours = product.metafields.custom.impact_hours | default: nil -%}
+{%- if impact_hours == nil -%}
+  {%- assign price_num = product.price | divided_by: 3500 -%}
+  {%- assign impact_hours = price_num -%}
+{%- endif -%}
+
+{%- if impact_hours and impact_hours > 0 -%}
+  <div class="product-card__impact">
+    Sale funds {{ impact_hours }} hrs job training
+  </div>
+{%- endif -%}

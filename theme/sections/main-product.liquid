@@ -1,0 +1,171 @@
+{%- comment -%}
+  Section: Main Product
+  Product detail page with gallery, info, add to cart
+{%- endcomment -%}
+
+{%- assign current_variant = product.selected_or_first_available_variant -%}
+{%- assign compare_price = current_variant.compare_at_price -%}
+{%- assign price = current_variant.price -%}
+
+<div class="product-page">
+  {%- comment -%} Gallery {%- endcomment -%}
+  <div class="product-gallery">
+    <div class="product-gallery__main">
+      {%- if product.featured_image -%}
+        <img
+          src="{{ product.featured_image | image_url: width: 1200 }}"
+          alt="{{ product.featured_image.alt | escape | default: product.title }}"
+          width="1200"
+          height="1600"
+          loading="eager"
+        >
+      {%- else -%}
+        {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
+      {%- endif -%}
+    </div>
+    {%- if product.images.size > 1 -%}
+      <div class="product-gallery__thumbs">
+        {%- for image in product.images -%}
+          <button class="product-gallery__thumb{% if forloop.first %} is-active{% endif %}" aria-label="View image {{ forloop.index }}">
+            <img
+              src="{{ image | image_url: width: 200 }}"
+              alt="{{ image.alt | escape | default: product.title }}"
+              width="72"
+              height="96"
+              loading="lazy"
+            >
+          </button>
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+  </div>
+
+  {%- comment -%} Product Info {%- endcomment -%}
+  <div class="product-info">
+    {%- comment -%} Brand {%- endcomment -%}
+    <div class="product-info__brand">{{ product.vendor }}</div>
+
+    {%- comment -%} Title {%- endcomment -%}
+    <h1 class="product-info__title">{{ product.title }}</h1>
+
+    {%- comment -%} Price Row {%- endcomment -%}
+    <div class="product-info__price-row">
+      <span class="product-info__price">{{ price | money }}</span>
+      {%- if compare_price and compare_price > price -%}
+        <span class="product-info__compare-price">{{ compare_price | money }}</span>
+        {%- assign savings = compare_price | minus: price | times: 100 | divided_by: compare_price -%}
+        <span class="product-info__savings">Save {{ savings }}%</span>
+      {%- endif -%}
+    </div>
+
+    {%- comment -%} Badges {%- endcomment -%}
+    <div class="product-info__badges">
+      {%- if product.tags contains 'nwt' -%}
+        <div class="product-info__condition-tooltip">
+          {% render 'badge', type: 'nwt' %}
+          <span class="tooltip-text">{{ 'products.product.condition.nwt' | t }}</span>
+        </div>
+      {%- elsif product.tags contains 'grade-a' -%}
+        <div class="product-info__condition-tooltip">
+          {% render 'badge', type: 'grade-a' %}
+          <span class="tooltip-text">{{ 'products.product.condition.grade_a' | t }}</span>
+        </div>
+      {%- elsif product.tags contains 'grade-b' -%}
+        <div class="product-info__condition-tooltip">
+          {% render 'badge', type: 'grade-b' %}
+          <span class="tooltip-text">{{ 'products.product.condition.grade_b' | t }}</span>
+        </div>
+      {%- endif -%}
+    </div>
+
+    {%- comment -%} Donated Badge {%- endcomment -%}
+    <div class="product-info__donated-badge">
+      &#8635; Donated by {{ product.vendor }}
+    </div>
+
+    {%- comment -%} Impact Line {%- endcomment -%}
+    {%- assign impact_hours = product.metafields.custom.impact_hours -%}
+    {%- if impact_hours -%}
+      <div class="product-info__impact">
+        Sale funds {{ impact_hours }} hrs job training
+      </div>
+    {%- endif -%}
+
+    {%- comment -%} Variant Selector {%- endcomment -%}
+    {%- if product.has_only_default_variant == false -%}
+      <div class="product-info__size-select">
+        {%- for option in product.options_with_values -%}
+          <div class="product-info__size-label">{{ option.name }}</div>
+          <select data-variant-select style="width:100%;padding:12px;border:1px solid var(--border);font-family:var(--sans);font-size:14px;margin-bottom:12px;">
+            {%- for variant in product.variants -%}
+              <option
+                value="{{ variant.id }}"
+                data-price="{{ variant.price | money }}"
+                data-compare-price="{{ variant.compare_at_price | money }}"
+                data-available="{{ variant.available }}"
+                {% if variant == current_variant %}selected{% endif %}
+              >
+                {{ variant.title }} — {{ variant.price | money }}{% unless variant.available %} (Sold out){% endunless %}
+              </option>
+            {%- endfor -%}
+          </select>
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+
+    {%- comment -%} Add to Cart {%- endcomment -%}
+    <form method="post" action="/cart/add" id="product-form-{{ section.id }}">
+      <input type="hidden" name="id" value="{{ current_variant.id }}">
+      <button
+        type="submit"
+        class="product-info__add-to-cart"
+        {% unless current_variant.available %}disabled{% endunless %}
+      >
+        {%- if current_variant.available -%}
+          {{ 'products.product.add_to_cart' | t }}
+        {%- else -%}
+          {{ 'products.product.sold_out' | t }}
+        {%- endif -%}
+      </button>
+    </form>
+
+    {%- comment -%} Description {%- endcomment -%}
+    {%- if product.description != blank -%}
+      <div style="margin-bottom:24px;font-size:14px;color:var(--mid);line-height:1.8;">
+        {{ product.description }}
+      </div>
+    {%- endif -%}
+
+    {%- comment -%} Mission Blurb {%- endcomment -%}
+    <div class="product-info__mission-blurb">
+      <strong>Your purchase matters.</strong> 100% of proceeds fund Homeboy Industries programs — job training, mental health support, and reentry services for men and women in Los Angeles.
+    </div>
+  </div>
+</div>
+
+{%- comment -%} Related Products {%- endcomment -%}
+{%- if product.collections.size > 0 -%}
+  {%- assign related_collection = product.collections.first -%}
+  <div class="product-related">
+    <div class="section-header">
+      <h2 class="section-title">You might also like</h2>
+      <a href="{{ related_collection.url }}" class="section-view-all">{{ 'collections.general.view_all' | t }}</a>
+    </div>
+    <div class="product-grid">
+      {%- for related in related_collection.products limit: 4 -%}
+        {%- unless related.id == product.id -%}
+          {% render 'product-card', product: related %}
+        {%- endunless -%}
+      {%- endfor -%}
+    </div>
+  </div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Product Page",
+  "tag": "section",
+  "class": "main-product-section",
+  "settings": []
+}
+{% endschema %}

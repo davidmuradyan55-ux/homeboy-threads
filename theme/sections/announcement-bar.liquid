@@ -1,0 +1,45 @@
+{%- comment -%}
+  Section: Announcement Bar
+  Scrolling text strip with charcoal background
+{%- endcomment -%}
+
+{%- if section.settings.message != blank -%}
+<div class="announcement-bar" role="region" aria-label="Announcement">
+  <div class="announcement-bar__inner">
+    {%- assign message_html = section.settings.message -%}
+    {%- if section.settings.link != blank -%}
+      {%- assign message_html = '<a href="' | append: section.settings.link | append: '">' | append: section.settings.message | append: '</a>' -%}
+    {%- endif -%}
+    <span class="announcement-bar__message">{{ message_html }}</span>
+    <span class="announcement-bar__message" aria-hidden="true">{{ message_html }}</span>
+    <span class="announcement-bar__message" aria-hidden="true">{{ message_html }}</span>
+    <span class="announcement-bar__message" aria-hidden="true">{{ message_html }}</span>
+  </div>
+</div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Announcement Bar",
+  "tag": "section",
+  "class": "announcement-bar-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "message",
+      "label": "Message",
+      "default": "New donation drop — limited quantities. Free shipping over $75 →"
+    },
+    {
+      "type": "url",
+      "id": "link",
+      "label": "Link URL"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Announcement Bar"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,186 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "Homeboy Threads",
+    "theme_version": "1.0.0",
+    "theme_author": "Homeboy Threads",
+    "theme_documentation_url": "",
+    "theme_support_url": ""
+  },
+  {
+    "name": "Colors",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Brand Colors"
+      },
+      {
+        "type": "color",
+        "id": "color_cream",
+        "label": "Cream",
+        "default": "#F5F0E8"
+      },
+      {
+        "type": "color",
+        "id": "color_warm_white",
+        "label": "Warm White",
+        "default": "#FAF8F4"
+      },
+      {
+        "type": "color",
+        "id": "color_charcoal",
+        "label": "Charcoal",
+        "default": "#1C1C1A"
+      },
+      {
+        "type": "color",
+        "id": "color_mid",
+        "label": "Mid Gray",
+        "default": "#5A5750"
+      },
+      {
+        "type": "color",
+        "id": "color_muted",
+        "label": "Muted",
+        "default": "#9A958E"
+      },
+      {
+        "type": "color",
+        "id": "color_accent",
+        "label": "Accent (Terracotta)",
+        "default": "#C84B2F"
+      },
+      {
+        "type": "color",
+        "id": "color_accent_light",
+        "label": "Accent Light",
+        "default": "#E8D5CE"
+      },
+      {
+        "type": "color",
+        "id": "color_forest",
+        "label": "Forest Green",
+        "default": "#2D4A35"
+      },
+      {
+        "type": "color",
+        "id": "color_forest_light",
+        "label": "Forest Light",
+        "default": "#D4E0D6"
+      },
+      {
+        "type": "color",
+        "id": "color_gold",
+        "label": "Gold",
+        "default": "#B8963E"
+      },
+      {
+        "type": "color",
+        "id": "color_gold_light",
+        "label": "Gold Light",
+        "default": "#F0E6C8"
+      }
+    ]
+  },
+  {
+    "name": "Impact & Mission",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Impact Counter"
+      },
+      {
+        "type": "text",
+        "id": "impact_counter_number",
+        "label": "Impact counter number (lbs diverted)",
+        "default": "4,218"
+      },
+      {
+        "type": "text",
+        "id": "impact_counter_label",
+        "label": "Impact counter label",
+        "default": "lbs diverted"
+      }
+    ]
+  },
+  {
+    "name": "Cart & Shipping",
+    "settings": [
+      {
+        "type": "text",
+        "id": "free_shipping_threshold",
+        "label": "Free shipping threshold ($)",
+        "default": "75"
+      }
+    ]
+  },
+  {
+    "name": "SEO",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Homepage SEO"
+      },
+      {
+        "type": "text",
+        "id": "seo_homepage_title",
+        "label": "Homepage meta title",
+        "default": "Homeboy Threads — Donated Designer Clothing | Shop for Good"
+      },
+      {
+        "type": "textarea",
+        "id": "seo_homepage_description",
+        "label": "Homepage meta description",
+        "default": "Shop donated clothing from premium brands. Every purchase funds reentry programs and job training through Homeboy Industries in Los Angeles. Free shipping on orders over $75."
+      }
+    ]
+  },
+  {
+    "name": "Social Media",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Social Media Links"
+      },
+      {
+        "type": "text",
+        "id": "social_instagram_link",
+        "label": "Instagram URL",
+        "default": ""
+      },
+      {
+        "type": "text",
+        "id": "social_tiktok_link",
+        "label": "TikTok URL",
+        "default": ""
+      },
+      {
+        "type": "text",
+        "id": "social_facebook_link",
+        "label": "Facebook URL",
+        "default": ""
+      },
+      {
+        "type": "text",
+        "id": "social_twitter_link",
+        "label": "Twitter/X URL",
+        "default": ""
+      }
+    ]
+  },
+  {
+    "name": "Favicon",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "favicon",
+        "label": "Favicon"
+      },
+      {
+        "type": "image_picker",
+        "id": "share_image",
+        "label": "Social share image"
+      }
+    ]
+  }
+]

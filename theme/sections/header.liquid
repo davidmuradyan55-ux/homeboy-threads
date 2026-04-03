@@ -1,0 +1,139 @@
+{%- comment -%}
+  Section: Header / Navigation
+  Sticky nav with logo, mega dropdowns, impact counter, search, cart
+{%- endcomment -%}
+
+<header class="header" role="banner">
+  <div class="header__inner">
+    {%- comment -%} Logo {%- endcomment -%}
+    <a href="/" class="header__logo" aria-label="{{ shop.name }}">
+      Homeboy <span>Threads</span>
+    </a>
+
+    {%- comment -%} Desktop Nav {%- endcomment -%}
+    <nav class="header__nav" role="navigation" aria-label="Main navigation">
+      {%- comment -%} Women {%- endcomment -%}
+      <div class="header__nav-item">
+        <a href="/collections/all" class="header__nav-link">Women</a>
+        <div class="header__mega" role="menu">
+          <a href="/collections/dresses" class="header__mega-link" role="menuitem">Dresses</a>
+          <a href="/collections/tops" class="header__mega-link" role="menuitem">Tops & Blouses</a>
+          <a href="/collections/denim" class="header__mega-link" role="menuitem">Denim</a>
+          <a href="/collections/outerwear" class="header__mega-link" role="menuitem">Jackets & Coats</a>
+          <a href="/collections/all" class="header__mega-link" role="menuitem">All Women's</a>
+        </div>
+      </div>
+
+      {%- comment -%} Designer Donated {%- endcomment -%}
+      <div class="header__nav-item">
+        <a href="/collections/designer-donated" class="header__nav-link">Designer Donated</a>
+        <div class="header__mega" role="menu">
+          {%- for link in linklists.main-menu.links -%}
+            {%- if link.title == 'Designer Donated' -%}
+              {%- for child in link.links -%}
+                <a href="{{ child.url }}" class="header__mega-link" role="menuitem">
+                  {{ child.title }}
+                </a>
+              {%- endfor -%}
+            {%- endif -%}
+          {%- endfor -%}
+          {%- comment -%} Fallback brand links {%- endcomment -%}
+          {%- for block in section.blocks -%}
+            {%- if block.type == 'brand_link' -%}
+              <a href="{{ block.settings.url }}" class="header__mega-link" role="menuitem">
+                {{ block.settings.title }}
+                {%- if block.settings.count != blank -%}
+                  <span class="count">{{ block.settings.count }}</span>
+                {%- endif -%}
+              </a>
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+      </div>
+
+      {%- comment -%} New With Tags {%- endcomment -%}
+      <a href="/collections/new-with-tags" class="header__nav-link">New With Tags</a>
+
+      {%- comment -%} Our Story {%- endcomment -%}
+      <a href="/pages/our-story" class="header__nav-link">Our Story</a>
+
+      {%- comment -%} Sale {%- endcomment -%}
+      <a href="/collections/sale" class="header__nav-link header__nav-link--sale">Sale</a>
+    </nav>
+
+    {%- comment -%} Actions {%- endcomment -%}
+    <div class="header__actions">
+      <span class="header__impact" aria-label="Impact counter">
+        &#8635; {{ settings.impact_counter_number }} {{ settings.impact_counter_label }}
+      </span>
+
+      <button class="header__search-btn" aria-label="{{ 'accessibility.search' | t }}" onclick="window.location.href='/search'">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+      </button>
+
+      <a href="/cart" class="header__cart-btn" aria-label="{{ 'accessibility.cart' | t }}">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+        <span class="header__cart-count">({{ cart.item_count }})</span>
+      </a>
+
+      {%- comment -%} Mobile Toggle {%- endcomment -%}
+      <button class="header__mobile-toggle" aria-label="{{ 'accessibility.menu' | t }}" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </div>
+
+  {%- comment -%} Mobile Overlay {%- endcomment -%}
+  <div class="header__mobile-overlay" role="dialog" aria-label="Mobile menu">
+    <button class="header__mobile-close" aria-label="{{ 'accessibility.close' | t }}">&times;</button>
+    <nav class="header__mobile-nav">
+      <a href="/collections/all" class="header__mobile-nav-link">Women</a>
+      <div class="header__mobile-subnav">
+        <a href="/collections/dresses">Dresses</a>
+        <a href="/collections/tops">Tops & Blouses</a>
+        <a href="/collections/denim">Denim</a>
+        <a href="/collections/outerwear">Jackets & Coats</a>
+      </div>
+      <a href="/collections/designer-donated" class="header__mobile-nav-link">Designer Donated</a>
+      <a href="/collections/new-with-tags" class="header__mobile-nav-link">New With Tags</a>
+      <a href="/pages/our-story" class="header__mobile-nav-link">Our Story</a>
+      <a href="/collections/sale" class="header__mobile-nav-link">Sale</a>
+    </nav>
+  </div>
+</header>
+
+{% schema %}
+{
+  "name": "Header",
+  "tag": "section",
+  "class": "header-section",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "brand_link",
+      "name": "Brand Dropdown Link",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Brand name",
+          "default": "Reformation"
+        },
+        {
+          "type": "url",
+          "id": "url",
+          "label": "Link URL"
+        },
+        {
+          "type": "text",
+          "id": "count",
+          "label": "Item count badge",
+          "default": "47"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

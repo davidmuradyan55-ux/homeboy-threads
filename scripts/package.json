@@ -1,0 +1,14 @@
+{
+  "name": "homeboy-threads-import",
+  "version": "1.0.0",
+  "description": "Product import pipeline for Homeboy Threads Shopify store",
+  "main": "import-listings.js",
+  "scripts": {
+    "import": "node import-listings.js"
+  },
+  "dependencies": {
+    "csv-writer": "^1.6.0",
+    "puppeteer": "^21.0.0",
+    "slugify": "^1.6.6"
+  }
+}

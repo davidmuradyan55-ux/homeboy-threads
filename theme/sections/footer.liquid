@@ -1,0 +1,231 @@
+{%- comment -%}
+  Section: Footer
+  Charcoal background, 4-column layout
+{%- endcomment -%}
+
+<footer class="footer" role="contentinfo">
+  <div class="footer__grid">
+    {%- comment -%} Brand Column {%- endcomment -%}
+    <div class="footer__brand">
+      <h3 class="footer__brand-name">Homeboy <span>Threads</span></h3>
+      <p class="footer__brand-desc">{{ section.settings.tagline }}</p>
+      {%- if settings.social_instagram_link != blank or settings.social_tiktok_link != blank or settings.social_facebook_link != blank -%}
+        <div class="footer__social">
+          {%- if settings.social_instagram_link != blank -%}
+            <a href="{{ settings.social_instagram_link }}" target="_blank" rel="noopener" aria-label="Instagram">IG</a>
+          {%- endif -%}
+          {%- if settings.social_tiktok_link != blank -%}
+            <a href="{{ settings.social_tiktok_link }}" target="_blank" rel="noopener" aria-label="TikTok">TK</a>
+          {%- endif -%}
+          {%- if settings.social_facebook_link != blank -%}
+            <a href="{{ settings.social_facebook_link }}" target="_blank" rel="noopener" aria-label="Facebook">FB</a>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+    </div>
+
+    {%- comment -%} Link Columns {%- endcomment -%}
+    {%- for block in section.blocks -%}
+      {%- if block.type == 'link_column' -%}
+        <div class="footer__col" {{ block.shopify_attributes }}>
+          <h4 class="footer__col-title">{{ block.settings.title }}</h4>
+          <div class="footer__col-links">
+            {%- if block.settings.menu != blank -%}
+              {%- for link in block.settings.menu.links -%}
+                <a href="{{ link.url }}">{{ link.title }}</a>
+              {%- endfor -%}
+            {%- endif -%}
+            {%- if block.settings.link_1_text != blank -%}
+              <a href="{{ block.settings.link_1_url }}">{{ block.settings.link_1_text }}</a>
+            {%- endif -%}
+            {%- if block.settings.link_2_text != blank -%}
+              <a href="{{ block.settings.link_2_url }}">{{ block.settings.link_2_text }}</a>
+            {%- endif -%}
+            {%- if block.settings.link_3_text != blank -%}
+              <a href="{{ block.settings.link_3_url }}">{{ block.settings.link_3_text }}</a>
+            {%- endif -%}
+            {%- if block.settings.link_4_text != blank -%}
+              <a href="{{ block.settings.link_4_url }}">{{ block.settings.link_4_text }}</a>
+            {%- endif -%}
+            {%- if block.settings.link_5_text != blank -%}
+              <a href="{{ block.settings.link_5_url }}">{{ block.settings.link_5_text }}</a>
+            {%- endif -%}
+            {%- if block.settings.link_6_text != blank -%}
+              <a href="{{ block.settings.link_6_url }}">{{ block.settings.link_6_text }}</a>
+            {%- endif -%}
+          </div>
+        </div>
+      {%- endif -%}
+    {%- endfor -%}
+  </div>
+
+  <div class="footer__bottom">
+    <span>&copy; {{ 'now' | date: '%Y' }} {{ section.settings.copyright_text }}</span>
+    <span class="footer__mission">{{ section.settings.mission_text }}</span>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Footer",
+  "tag": "section",
+  "class": "footer-section",
+  "settings": [
+    {
+      "type": "textarea",
+      "id": "tagline",
+      "label": "Brand tagline",
+      "default": "The retail arm of Homeboy Industries. Premium donated clothing sold to fund reentry programs, job training, and second chances in Los Angeles."
+    },
+    {
+      "type": "text",
+      "id": "copyright_text",
+      "label": "Copyright text",
+      "default": "Homeboy Threads · A Homeboy Industries initiative · Los Angeles, CA"
+    },
+    {
+      "type": "text",
+      "id": "mission_text",
+      "label": "Mission tagline",
+      "default": "Every purchase funds a second chance."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "link_column",
+      "name": "Link Column",
+      "limit": 4,
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Column title",
+          "default": "Shop"
+        },
+        {
+          "type": "link_list",
+          "id": "menu",
+          "label": "Menu (optional)"
+        },
+        {
+          "type": "text",
+          "id": "link_1_text",
+          "label": "Link 1 text"
+        },
+        {
+          "type": "url",
+          "id": "link_1_url",
+          "label": "Link 1 URL"
+        },
+        {
+          "type": "text",
+          "id": "link_2_text",
+          "label": "Link 2 text"
+        },
+        {
+          "type": "url",
+          "id": "link_2_url",
+          "label": "Link 2 URL"
+        },
+        {
+          "type": "text",
+          "id": "link_3_text",
+          "label": "Link 3 text"
+        },
+        {
+          "type": "url",
+          "id": "link_3_url",
+          "label": "Link 3 URL"
+        },
+        {
+          "type": "text",
+          "id": "link_4_text",
+          "label": "Link 4 text"
+        },
+        {
+          "type": "url",
+          "id": "link_4_url",
+          "label": "Link 4 URL"
+        },
+        {
+          "type": "text",
+          "id": "link_5_text",
+          "label": "Link 5 text"
+        },
+        {
+          "type": "url",
+          "id": "link_5_url",
+          "label": "Link 5 URL"
+        },
+        {
+          "type": "text",
+          "id": "link_6_text",
+          "label": "Link 6 text"
+        },
+        {
+          "type": "url",
+          "id": "link_6_url",
+          "label": "Link 6 URL"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Footer",
+      "blocks": [
+        {
+          "type": "link_column",
+          "settings": {
+            "title": "Shop",
+            "link_1_text": "All Items",
+            "link_1_url": "/collections/all",
+            "link_2_text": "Reformation",
+            "link_2_url": "/collections/reformation",
+            "link_3_text": "Guess",
+            "link_3_url": "/collections/guess",
+            "link_4_text": "Dresses",
+            "link_4_url": "/collections/dresses",
+            "link_5_text": "Denim",
+            "link_5_url": "/collections/denim",
+            "link_6_text": "New With Tags",
+            "link_6_url": "/collections/new-with-tags"
+          }
+        },
+        {
+          "type": "link_column",
+          "settings": {
+            "title": "Mission",
+            "link_1_text": "Our Story",
+            "link_1_url": "/pages/our-story",
+            "link_2_text": "Homeboy Industries",
+            "link_2_url": "https://www.homeboyindustries.org",
+            "link_3_text": "Brand Partners",
+            "link_3_url": "/pages/our-story",
+            "link_4_text": "Impact Report",
+            "link_4_url": "/pages/our-story",
+            "link_5_text": "Donate Clothing",
+            "link_5_url": "/pages/our-story"
+          }
+        },
+        {
+          "type": "link_column",
+          "settings": {
+            "title": "Help",
+            "link_1_text": "Sizing & Fit",
+            "link_1_url": "/pages/sizing",
+            "link_2_text": "Condition Guide",
+            "link_2_url": "/pages/condition-guide",
+            "link_3_text": "Shipping",
+            "link_3_url": "/policies/shipping-policy",
+            "link_4_text": "Returns",
+            "link_4_url": "/policies/refund-policy",
+            "link_5_text": "Contact",
+            "link_5_url": "/pages/contact"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

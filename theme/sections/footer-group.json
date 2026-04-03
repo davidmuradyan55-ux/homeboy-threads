@@ -1,0 +1,68 @@
+{
+  "type": "footer",
+  "name": "Footer Group",
+  "sections": {
+    "footer": {
+      "type": "footer",
+      "settings": {
+        "tagline": "The retail arm of Homeboy Industries. Premium donated clothing sold to fund reentry programs, job training, and second chances in Los Angeles.",
+        "copyright_text": "Homeboy Threads · A Homeboy Industries initiative · Los Angeles, CA",
+        "mission_text": "Every purchase funds a second chance."
+      },
+      "blocks": {
+        "shop": {
+          "type": "link_column",
+          "settings": {
+            "title": "Shop",
+            "link_1_text": "All Items",
+            "link_1_url": "/collections/all",
+            "link_2_text": "Reformation",
+            "link_2_url": "/collections/reformation",
+            "link_3_text": "Guess",
+            "link_3_url": "/collections/guess",
+            "link_4_text": "Dresses",
+            "link_4_url": "/collections/dresses",
+            "link_5_text": "Denim",
+            "link_5_url": "/collections/denim",
+            "link_6_text": "New With Tags",
+            "link_6_url": "/collections/new-with-tags"
+          }
+        },
+        "mission": {
+          "type": "link_column",
+          "settings": {
+            "title": "Mission",
+            "link_1_text": "Our Story",
+            "link_1_url": "/pages/our-story",
+            "link_2_text": "Homeboy Industries",
+            "link_2_url": "https://www.homeboyindustries.org",
+            "link_3_text": "Brand Partners",
+            "link_3_url": "/pages/our-story",
+            "link_4_text": "Impact Report",
+            "link_4_url": "/pages/our-story",
+            "link_5_text": "Donate Clothing",
+            "link_5_url": "/pages/our-story"
+          }
+        },
+        "help": {
+          "type": "link_column",
+          "settings": {
+            "title": "Help",
+            "link_1_text": "Sizing & Fit",
+            "link_1_url": "/pages/sizing",
+            "link_2_text": "Condition Guide",
+            "link_2_url": "/pages/condition-guide",
+            "link_3_text": "Shipping",
+            "link_3_url": "/policies/shipping-policy",
+            "link_4_text": "Returns",
+            "link_4_url": "/policies/refund-policy",
+            "link_5_text": "Contact",
+            "link_5_url": "/pages/contact"
+          }
+        }
+      },
+      "block_order": ["shop", "mission", "help"]
+    }
+  },
+  "order": ["footer"]
+}

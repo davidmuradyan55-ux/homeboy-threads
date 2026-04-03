@@ -1,0 +1,132 @@
+{%- comment -%}
+  Section: Brand Spotlight
+  2-column brand panels with stats
+{%- endcomment -%}
+
+<div class="brand-spotlight">
+  {%- for block in section.blocks -%}
+    {%- if block.type == 'brand_panel' -%}
+      <div class="brand-spotlight__panel" data-brand-short="{{ block.settings.short_name }}" {{ block.shopify_attributes }}>
+        <div class="brand-spotlight__eyebrow">Donated partner</div>
+        <h3 class="brand-spotlight__name">{{ block.settings.name }}</h3>
+        <p class="brand-spotlight__desc">{{ block.settings.description }}</p>
+
+        <div class="brand-spotlight__meta">
+          <div class="brand-spotlight__meta-item">
+            {%- if block.settings.collection != blank -%}
+              <span class="brand-spotlight__meta-value">{{ block.settings.collection.products_count }}</span>
+            {%- else -%}
+              <span class="brand-spotlight__meta-value">{{ block.settings.pieces_count }}</span>
+            {%- endif -%}
+            <span class="brand-spotlight__meta-label">pieces in stock</span>
+          </div>
+          <div class="brand-spotlight__meta-item">
+            <span class="brand-spotlight__meta-value">{{ block.settings.discount_range }}</span>
+            <span class="brand-spotlight__meta-label">below retail</span>
+          </div>
+          <div class="brand-spotlight__meta-item">
+            <span class="brand-spotlight__meta-value">{{ block.settings.avg_condition }}</span>
+            <span class="brand-spotlight__meta-label">avg condition</span>
+          </div>
+        </div>
+
+        {%- if block.settings.link_url != blank -%}
+          <a href="{{ block.settings.link_url }}" class="brand-spotlight__link">Shop {{ block.settings.name }}</a>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+  {%- endfor -%}
+</div>
+
+{% schema %}
+{
+  "name": "Brand Spotlight",
+  "tag": "section",
+  "class": "brand-spotlight-section",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "brand_panel",
+      "name": "Brand Panel",
+      "limit": 4,
+      "settings": [
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Brand name",
+          "default": "Reformation"
+        },
+        {
+          "type": "text",
+          "id": "short_name",
+          "label": "Short name (background text)",
+          "default": "Ref"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description",
+          "default": "Brand description goes here."
+        },
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Brand collection (for dynamic count)"
+        },
+        {
+          "type": "text",
+          "id": "pieces_count",
+          "label": "Pieces in stock (manual fallback)",
+          "default": "47"
+        },
+        {
+          "type": "text",
+          "id": "discount_range",
+          "label": "Discount range",
+          "default": "50–70%"
+        },
+        {
+          "type": "text",
+          "id": "avg_condition",
+          "label": "Average condition",
+          "default": "A+"
+        },
+        {
+          "type": "url",
+          "id": "link_url",
+          "label": "Shop link URL"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Brand Spotlight",
+      "blocks": [
+        {
+          "type": "brand_panel",
+          "settings": {
+            "name": "Reformation",
+            "short_name": "Ref",
+            "description": "The sustainable \"it girl\" brand worn by Rihanna and Bella Hadid donates overstock and samples directly to Homeboy Threads. Dresses, tops, and denim at a fraction of retail — with a mission behind every purchase.",
+            "pieces_count": "47",
+            "discount_range": "50–70%",
+            "avg_condition": "A+"
+          }
+        },
+        {
+          "type": "brand_panel",
+          "settings": {
+            "name": "Guess",
+            "short_name": "Gss",
+            "description": "Iconic denim, bold branding, and everyday essentials. Guess donates a range of styles from classic jeans to going-out pieces. Perfect for anyone who wants recognizable labels without retail prices.",
+            "pieces_count": "83",
+            "discount_range": "55–65%",
+            "avg_condition": "A"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

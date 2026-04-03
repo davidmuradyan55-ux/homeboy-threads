@@ -1,0 +1,162 @@
+{%- comment -%}
+  Section: Hero
+  Two-column split — text left, featured product right
+{%- endcomment -%}
+
+<section class="hero">
+  {%- comment -%} Left Column — Text {%- endcomment -%}
+  <div class="hero__left">
+    <div class="hero__eyebrow">{{ section.settings.eyebrow }}</div>
+    <h1 class="hero__headline">{{ section.settings.headline }}</h1>
+    <p class="hero__subheadline">{{ section.settings.subheadline }}</p>
+
+    <div class="hero__ctas">
+      {%- if section.settings.cta_primary_text != blank -%}
+        <a href="{{ section.settings.cta_primary_url }}" class="btn-primary">{{ section.settings.cta_primary_text }}</a>
+      {%- endif -%}
+      {%- if section.settings.cta_ghost_text != blank -%}
+        <a href="{{ section.settings.cta_ghost_url }}" class="btn-ghost">{{ section.settings.cta_ghost_text }}</a>
+      {%- endif -%}
+    </div>
+
+    <div class="hero__impact-strip">
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'impact_stat' -%}
+          <div class="hero__stat" {{ block.shopify_attributes }}>
+            <span class="hero__stat-number">{{ block.settings.number }}</span>
+            <span class="hero__stat-label">{{ block.settings.label }}</span>
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </div>
+
+  {%- comment -%} Right Column — Featured Product {%- endcomment -%}
+  <div class="hero__right">
+    {%- assign featured_product = nil -%}
+
+    {%- comment -%} Try to find a product tagged "featured" {%- endcomment -%}
+    {%- if section.settings.featured_product != blank -%}
+      {%- assign featured_product = section.settings.featured_product -%}
+    {%- else -%}
+      {%- for product in collections['new-with-tags'].products limit: 1 -%}
+        {%- assign featured_product = product -%}
+      {%- endfor -%}
+    {%- endif -%}
+
+    {%- if featured_product != blank and featured_product.featured_image -%}
+      <img
+        class="hero__featured-image"
+        src="{{ featured_product.featured_image | image_url: width: 1200 }}"
+        alt="{{ featured_product.featured_image.alt | escape | default: featured_product.title }}"
+        width="1200"
+        height="1600"
+        loading="eager"
+        fetchpriority="high"
+      >
+    {%- else -%}
+      <div class="hero__featured-placeholder"></div>
+    {%- endif -%}
+
+    {%- if featured_product != blank -%}
+      <a href="{{ featured_product.url }}" class="hero__product-tag" style="text-decoration:none;">
+        <div>
+          <div class="hero__tag-brand">Donated by {{ featured_product.vendor }}</div>
+          <div class="hero__tag-name">{{ featured_product.title }}</div>
+        </div>
+        <div class="hero__tag-badge-group">
+          <span class="badge badge--donated" style="background:var(--forest);color:#A8C4AC;font-family:var(--mono);font-size:10px;padding:3px 8px;border-radius:2px;letter-spacing:0.06em;text-transform:uppercase;">Brand donated</span>
+          <span class="hero__tag-price">{{ featured_product.price | money }}</span>
+        </div>
+      </a>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Hero",
+  "tag": "section",
+  "class": "hero-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow text",
+      "default": "Donated by brands. Worn for good."
+    },
+    {
+      "type": "html",
+      "id": "headline",
+      "label": "Headline (HTML — use <em> for accent)",
+      "default": "Fashion that<br><em>funds futures</em>"
+    },
+    {
+      "type": "textarea",
+      "id": "subheadline",
+      "label": "Subheadline",
+      "default": "Premium brands like Reformation and Guess donate their overstock to us. We sell it at accessible prices. Every purchase funds job training and reentry programs through Homeboy Industries."
+    },
+    {
+      "type": "text",
+      "id": "cta_primary_text",
+      "label": "Primary CTA text",
+      "default": "Shop New Arrivals"
+    },
+    {
+      "type": "url",
+      "id": "cta_primary_url",
+      "label": "Primary CTA link",
+      "default": "/collections/new-with-tags"
+    },
+    {
+      "type": "text",
+      "id": "cta_ghost_text",
+      "label": "Secondary CTA text",
+      "default": "Our Story"
+    },
+    {
+      "type": "url",
+      "id": "cta_ghost_url",
+      "label": "Secondary CTA link",
+      "default": "/pages/our-story"
+    },
+    {
+      "type": "product",
+      "id": "featured_product",
+      "label": "Featured product (leave blank for auto)"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "impact_stat",
+      "name": "Impact Stat",
+      "limit": 4,
+      "settings": [
+        {
+          "type": "text",
+          "id": "number",
+          "label": "Number",
+          "default": "4,200+"
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "lbs diverted"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero",
+      "blocks": [
+        { "type": "impact_stat", "settings": { "number": "4,200+", "label": "lbs diverted" } },
+        { "type": "impact_stat", "settings": { "number": "12", "label": "brand partners" } },
+        { "type": "impact_stat", "settings": { "number": "$180k", "label": "mission funded" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

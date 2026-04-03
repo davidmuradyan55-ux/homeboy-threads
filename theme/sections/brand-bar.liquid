@@ -1,0 +1,51 @@
+{%- comment -%}
+  Section: Brand Trust Bar
+  Scrolling list of donated brand names
+{%- endcomment -%}
+
+<div class="brand-bar" role="region" aria-label="Brand partners">
+  <span class="brand-bar__label">Donated by</span>
+  <div class="brand-bar__divider" aria-hidden="true"></div>
+  <div class="brand-bar__brands">
+    {%- for block in section.blocks -%}
+      <span class="brand-bar__name" {{ block.shopify_attributes }}>{{ block.settings.name }}</span>
+    {%- endfor -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Brand Bar",
+  "tag": "section",
+  "class": "brand-bar-section",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "brand",
+      "name": "Brand",
+      "settings": [
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Brand name",
+          "default": "Brand Name"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Brand Bar",
+      "blocks": [
+        { "type": "brand", "settings": { "name": "Reformation" } },
+        { "type": "brand", "settings": { "name": "Guess" } },
+        { "type": "brand", "settings": { "name": "Madewell" } },
+        { "type": "brand", "settings": { "name": "Levi's" } },
+        { "type": "brand", "settings": { "name": "Anthropologie" } },
+        { "type": "brand", "settings": { "name": "Banana Republic" } },
+        { "type": "brand", "settings": { "name": "+ more" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

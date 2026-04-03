@@ -1,0 +1,27 @@
+{
+  "sections": {
+    "main-our-story": {
+      "type": "main-our-story",
+      "settings": {
+        "eyebrow": "Our story",
+        "title": "Fashion that funds futures",
+        "subtitle": "Homeboy Threads is the retail arm of Homeboy Industries — the world's largest gang intervention and reentry program. Every purchase funds job training, mental health services, and second chances.",
+        "embed_url": "https://www.homeboyindustries.org",
+        "embed_description": "Learn more about the programs your purchase supports at Homeboy Industries."
+      },
+      "blocks": {
+        "stat1": { "type": "stat", "settings": { "number": "72%", "label": "recidivism reduction" } },
+        "stat2": { "type": "stat", "settings": { "number": "10,000+", "label": "people served yearly" } },
+        "stat3": { "type": "stat", "settings": { "number": "35+", "label": "years of service" } },
+        "partner1": { "type": "partner", "settings": { "name": "Reformation", "description": "Sustainable fashion brand donating overstock and samples. Known for effortless dresses, tops, and denim." } },
+        "partner2": { "type": "partner", "settings": { "name": "Guess", "description": "Iconic American brand donating denim, essentials, and lifestyle pieces at scale." } },
+        "partner3": { "type": "partner", "settings": { "name": "Madewell", "description": "Premium denim and everyday essentials. Donating quality basics and statement pieces." } },
+        "partner4": { "type": "partner", "settings": { "name": "Levi's", "description": "Heritage denim brand contributing classic jeans, jackets, and wardrobe staples." } },
+        "partner5": { "type": "partner", "settings": { "name": "Anthropologie", "description": "Bohemian-inspired lifestyle brand donating unique dresses, home goods, and accessories." } },
+        "partner6": { "type": "partner", "settings": { "name": "Banana Republic", "description": "Modern workwear and polished essentials. Donating professional and casual pieces." } }
+      },
+      "block_order": ["stat1", "stat2", "stat3", "partner1", "partner2", "partner3", "partner4", "partner5", "partner6"]
+    }
+  },
+  "order": ["main-our-story"]
+}

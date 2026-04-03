@@ -1,0 +1,63 @@
+{%- comment -%}
+  Section: Trust Bar
+  4-column grid with icons, titles, descriptions
+{%- endcomment -%}
+
+<div class="trust-bar" role="region" aria-label="Trust features">
+  {%- for block in section.blocks -%}
+    {%- if block.type == 'trust_item' -%}
+      <div class="trust-bar__item" {{ block.shopify_attributes }}>
+        <div class="trust-bar__icon" aria-hidden="true">{{ block.settings.icon }}</div>
+        <div class="trust-bar__title">{{ block.settings.title }}</div>
+        <div class="trust-bar__desc">{{ block.settings.description }}</div>
+      </div>
+    {%- endif -%}
+  {%- endfor -%}
+</div>
+
+{% schema %}
+{
+  "name": "Trust Bar",
+  "tag": "section",
+  "class": "trust-bar-section",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "trust_item",
+      "name": "Trust Item",
+      "limit": 6,
+      "settings": [
+        {
+          "type": "text",
+          "id": "icon",
+          "label": "Icon (emoji or text)",
+          "default": "↻"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Trust feature"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description",
+          "default": "Feature description goes here."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Trust Bar",
+      "blocks": [
+        { "type": "trust_item", "settings": { "icon": "↻", "title": "100% donated inventory", "description": "Every piece comes directly from brand partners — no secondhand sourcing, no mystery origin." } },
+        { "type": "trust_item", "settings": { "icon": "✦", "title": "Condition graded", "description": "Every item is inspected and graded A+, A, or B before listing. No surprises on arrival." } },
+        { "type": "trust_item", "settings": { "icon": "◎", "title": "Real impact, tracked", "description": "We show exactly how your purchase translates to hours of job training or services funded." } },
+        { "type": "trust_item", "settings": { "icon": "⟵", "title": "Easy returns", "description": "30-day returns on all items. If it's not right, we make it right — no questions asked." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

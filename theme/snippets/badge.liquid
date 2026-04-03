@@ -1,0 +1,18 @@
+{%- comment -%}
+  Badge snippet
+  Usage: {% render 'badge', type: 'donated' %}
+  Types: donated, nwt, grade-a, grade-b, one-left
+{%- endcomment -%}
+
+{%- case type -%}
+  {%- when 'donated' -%}
+    <span class="badge badge--donated" style="background:var(--forest);color:#A8C4AC;">{{ label | default: 'Donated' }}</span>
+  {%- when 'nwt' -%}
+    <span class="badge badge--nwt" style="background:var(--gold);color:#1C1C1A;">NWT</span>
+  {%- when 'grade-a' -%}
+    <span class="badge badge--grade-a" style="background:var(--forest);color:#A8C4AC;">Grade A</span>
+  {%- when 'grade-b' -%}
+    <span class="badge badge--grade-b" style="background:var(--mid);color:var(--cream);">Grade B</span>
+  {%- when 'one-left' -%}
+    <span class="badge badge--one-left" style="background:var(--accent);color:var(--cream);">1 left</span>
+{%- endcase -%}

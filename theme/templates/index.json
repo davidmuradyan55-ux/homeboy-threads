@@ -1,0 +1,156 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero",
+      "settings": {
+        "eyebrow": "Donated by brands. Worn for good.",
+        "headline": "Fashion that<br><em>funds futures</em>",
+        "subheadline": "Premium brands like Reformation and Guess donate their overstock to us. We sell it at accessible prices. Every purchase funds job training and reentry programs through Homeboy Industries.",
+        "cta_primary_text": "Shop New Arrivals",
+        "cta_primary_url": "/collections/new-with-tags",
+        "cta_ghost_text": "Our Story",
+        "cta_ghost_url": "/pages/our-story"
+      },
+      "blocks": {
+        "stat_1": {
+          "type": "impact_stat",
+          "settings": { "number": "4,200+", "label": "lbs diverted" }
+        },
+        "stat_2": {
+          "type": "impact_stat",
+          "settings": { "number": "12", "label": "brand partners" }
+        },
+        "stat_3": {
+          "type": "impact_stat",
+          "settings": { "number": "$180k", "label": "mission funded" }
+        }
+      },
+      "block_order": ["stat_1", "stat_2", "stat_3"]
+    },
+    "brand-bar": {
+      "type": "brand-bar",
+      "blocks": {
+        "b1": { "type": "brand", "settings": { "name": "Reformation" } },
+        "b2": { "type": "brand", "settings": { "name": "Guess" } },
+        "b3": { "type": "brand", "settings": { "name": "Madewell" } },
+        "b4": { "type": "brand", "settings": { "name": "Levi's" } },
+        "b5": { "type": "brand", "settings": { "name": "Anthropologie" } },
+        "b6": { "type": "brand", "settings": { "name": "Banana Republic" } },
+        "b7": { "type": "brand", "settings": { "name": "+ more" } }
+      },
+      "block_order": ["b1", "b2", "b3", "b4", "b5", "b6", "b7"]
+    },
+    "featured-collection": {
+      "type": "featured-collection",
+      "settings": {
+        "eyebrow": "Just landed",
+        "headline": "New <em>arrivals</em>",
+        "products_to_show": 8
+      },
+      "blocks": {
+        "f1": { "type": "filter_pill", "settings": { "label": "Reformation", "tag": "reformation" } },
+        "f2": { "type": "filter_pill", "settings": { "label": "Guess Denim", "tag": "guess" } },
+        "f3": { "type": "filter_pill", "settings": { "label": "Dresses", "tag": "dresses" } },
+        "f4": { "type": "filter_pill", "settings": { "label": "Tops", "tag": "tops" } },
+        "f5": { "type": "filter_pill", "settings": { "label": "Bottoms", "tag": "denim" } },
+        "f6": { "type": "filter_pill", "settings": { "label": "Outerwear", "tag": "outerwear" } },
+        "f7": { "type": "filter_pill", "settings": { "label": "New With Tags", "tag": "nwt" } }
+      },
+      "block_order": ["f1", "f2", "f3", "f4", "f5", "f6", "f7"]
+    },
+    "mission-strip": {
+      "type": "mission-strip",
+      "settings": {
+        "eyebrow": "Our mission",
+        "headline": "More than<br>a <em>thrift store</em>",
+        "body": "Homeboy Threads is the retail arm of Homeboy Industries — the world's largest gang intervention program. When you buy here, you're funding job training, mental health support, and real second chances for people who need it most. The brands we partner with believe in that too.",
+        "link_text": "Learn about Homeboy Industries",
+        "link_url": "/pages/our-story"
+      },
+      "blocks": {
+        "s1": { "type": "stat", "settings": { "number": "72%", "label": "of our graduates stay out of the justice system permanently" } },
+        "s2": { "type": "stat", "settings": { "number": "10k", "label": "people served by Homeboy Industries each year in Los Angeles" } },
+        "s3": { "type": "stat", "settings": { "number": "$0", "label": "of your purchase goes to brand profit. 100% supports the mission." } }
+      },
+      "block_order": ["s1", "s2", "s3"]
+    },
+    "how-it-works": {
+      "type": "how-it-works",
+      "settings": {
+        "eyebrow": "The model",
+        "headline": "How it <em>works</em>"
+      },
+      "blocks": {
+        "step1": { "type": "step", "settings": { "title": "Brands donate", "body": "Premium brands like Reformation and Guess donate overstock, samples, and returned items to us instead of sending them to landfill. Every piece is inspected and graded before it hits our store." } },
+        "step2": { "type": "step", "settings": { "title": "You shop", "body": "Browse curated pieces from real brands at 50–70% below retail. Each listing includes the brand, condition grade, measurements, and a direct line to the impact your purchase creates." } },
+        "step3": { "type": "step", "settings": { "title": "We fund futures", "body": "Every dollar of revenue goes straight back into Homeboy Industries programming — job training, mental health services, tattoo removal, and reentry support for men and women in Los Angeles." } }
+      },
+      "block_order": ["step1", "step2", "step3"]
+    },
+    "brand-spotlight": {
+      "type": "brand-spotlight",
+      "blocks": {
+        "ref": {
+          "type": "brand_panel",
+          "settings": {
+            "name": "Reformation",
+            "short_name": "Ref",
+            "description": "The sustainable \"it girl\" brand worn by Rihanna and Bella Hadid donates overstock and samples directly to Homeboy Threads. Dresses, tops, and denim at a fraction of retail — with a mission behind every purchase.",
+            "pieces_count": "47",
+            "discount_range": "50–70%",
+            "avg_condition": "A+"
+          }
+        },
+        "guess": {
+          "type": "brand_panel",
+          "settings": {
+            "name": "Guess",
+            "short_name": "Gss",
+            "description": "Iconic denim, bold branding, and everyday essentials. Guess donates a range of styles from classic jeans to going-out pieces. Perfect for anyone who wants recognizable labels without retail prices.",
+            "pieces_count": "83",
+            "discount_range": "55–65%",
+            "avg_condition": "A"
+          }
+        }
+      },
+      "block_order": ["ref", "guess"]
+    },
+    "email-capture": {
+      "type": "email-capture",
+      "settings": {
+        "eyebrow": "Drop notifications",
+        "headline": "Be first for<br>the next drop",
+        "body": "New donations arrive weekly. Join our list to get early access to new arrivals from your favorite brands — before they sell out.",
+        "button_text": "Get early access",
+        "success_message": "Thanks for subscribing! Watch your inbox for the next drop."
+      },
+      "blocks": {
+        "p1": { "type": "perk", "settings": { "text": "New drop alerts" } },
+        "p2": { "type": "perk", "settings": { "text": "Brand-specific notifs" } },
+        "p3": { "type": "perk", "settings": { "text": "Impact updates" } },
+        "p4": { "type": "perk", "settings": { "text": "No spam" } }
+      },
+      "block_order": ["p1", "p2", "p3", "p4"]
+    },
+    "trust-bar": {
+      "type": "trust-bar",
+      "blocks": {
+        "t1": { "type": "trust_item", "settings": { "icon": "↻", "title": "100% donated inventory", "description": "Every piece comes directly from brand partners — no secondhand sourcing, no mystery origin." } },
+        "t2": { "type": "trust_item", "settings": { "icon": "✦", "title": "Condition graded", "description": "Every item is inspected and graded A+, A, or B before listing. No surprises on arrival." } },
+        "t3": { "type": "trust_item", "settings": { "icon": "◎", "title": "Real impact, tracked", "description": "We show exactly how your purchase translates to hours of job training or services funded." } },
+        "t4": { "type": "trust_item", "settings": { "icon": "⟵", "title": "Easy returns", "description": "30-day returns on all items. If it's not right, we make it right — no questions asked." } }
+      },
+      "block_order": ["t1", "t2", "t3", "t4"]
+    }
+  },
+  "order": [
+    "hero",
+    "brand-bar",
+    "featured-collection",
+    "mission-strip",
+    "how-it-works",
+    "brand-spotlight",
+    "email-capture",
+    "trust-bar"
+  ]
+}

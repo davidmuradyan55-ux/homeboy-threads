@@ -1,0 +1,131 @@
+{%- comment -%}
+  Section: Featured Collection / Product Grid
+  With category filter pills and 4-column grid
+{%- endcomment -%}
+
+{%- assign collection = section.settings.collection -%}
+
+<section class="featured-collection">
+  {%- comment -%} Section Header {%- endcomment -%}
+  <div class="section-header">
+    <div>
+      <div class="section-eyebrow">{{ section.settings.eyebrow }}</div>
+      <h2 class="section-title">{{ section.settings.headline }}</h2>
+    </div>
+    {%- if collection != blank -%}
+      <a href="{{ collection.url }}" class="section-view-all">{{ 'collections.general.view_all' | t }}</a>
+    {%- endif -%}
+  </div>
+
+  {%- comment -%} Category Filter Pills {%- endcomment -%}
+  <div class="category-nav" role="tablist">
+    <button class="category-nav__pill is-active" data-filter="all" role="tab" aria-selected="true">
+      {{ 'collections.general.all' | t }}
+    </button>
+    {%- for block in section.blocks -%}
+      {%- if block.type == 'filter_pill' -%}
+        <button
+          class="category-nav__pill"
+          data-filter="{{ block.settings.tag | downcase }}"
+          role="tab"
+          aria-selected="false"
+          {{ block.shopify_attributes }}
+        >
+          {{ block.settings.label }}
+        </button>
+      {%- endif -%}
+    {%- endfor -%}
+  </div>
+
+  {%- comment -%} Product Grid {%- endcomment -%}
+  <div class="product-grid">
+    {%- if collection != blank -%}
+      {%- for product in collection.products limit: section.settings.products_to_show -%}
+        {% render 'product-card', product: product %}
+      {%- endfor -%}
+    {%- else -%}
+      {%- for i in (1..8) -%}
+        <div class="product-card">
+          <div class="product-card__image-wrapper">
+            {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
+          </div>
+          <div class="product-card__brand">Brand Name</div>
+          <div class="product-card__title">Sample Product {{ i }}</div>
+          <div class="product-card__meta">
+            <span class="product-card__price">$45.00</span>
+          </div>
+        </div>
+      {%- endfor -%}
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Featured Collection",
+  "tag": "section",
+  "class": "featured-collection-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow text",
+      "default": "Just landed"
+    },
+    {
+      "type": "html",
+      "id": "headline",
+      "label": "Headline (HTML)",
+      "default": "New <em>arrivals</em>"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection"
+    },
+    {
+      "type": "range",
+      "id": "products_to_show",
+      "label": "Products to show",
+      "min": 4,
+      "max": 24,
+      "step": 4,
+      "default": 8
+    }
+  ],
+  "blocks": [
+    {
+      "type": "filter_pill",
+      "name": "Filter Pill",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "Dresses"
+        },
+        {
+          "type": "text",
+          "id": "tag",
+          "label": "Product tag to filter by",
+          "default": "dresses"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Featured Collection",
+      "blocks": [
+        { "type": "filter_pill", "settings": { "label": "Reformation", "tag": "reformation" } },
+        { "type": "filter_pill", "settings": { "label": "Guess Denim", "tag": "guess" } },
+        { "type": "filter_pill", "settings": { "label": "Dresses", "tag": "dresses" } },
+        { "type": "filter_pill", "settings": { "label": "Tops", "tag": "tops" } },
+        { "type": "filter_pill", "settings": { "label": "Bottoms", "tag": "denim" } },
+        { "type": "filter_pill", "settings": { "label": "Outerwear", "tag": "outerwear" } },
+        { "type": "filter_pill", "settings": { "label": "New With Tags", "tag": "nwt" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

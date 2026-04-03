@@ -1,0 +1,102 @@
+{%- comment -%}
+  Section: Mission Strip
+  Two-column — charcoal text left, accent stats right
+{%- endcomment -%}
+
+<section class="mission-strip">
+  {%- comment -%} Left — Text {%- endcomment -%}
+  <div class="mission-strip__text">
+    <div class="mission-strip__eyebrow">{{ section.settings.eyebrow }}</div>
+    <h2 class="mission-strip__headline">{{ section.settings.headline }}</h2>
+    <p class="mission-strip__body">{{ section.settings.body }}</p>
+    {%- if section.settings.link_text != blank -%}
+      <a href="{{ section.settings.link_url }}" class="mission-strip__link">{{ section.settings.link_text }}</a>
+    {%- endif -%}
+  </div>
+
+  {%- comment -%} Right — Stats {%- endcomment -%}
+  <div class="mission-strip__stats">
+    {%- for block in section.blocks -%}
+      {%- if block.type == 'stat' -%}
+        {%- unless forloop.first -%}
+          <div class="mission-strip__stat-divider" aria-hidden="true"></div>
+        {%- endunless -%}
+        <div class="mission-strip__stat" {{ block.shopify_attributes }}>
+          <span class="mission-strip__stat-number">{{ block.settings.number }}</span>
+          <span class="mission-strip__stat-label">{{ block.settings.label }}</span>
+        </div>
+      {%- endif -%}
+    {%- endfor -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Mission Strip",
+  "tag": "section",
+  "class": "mission-strip-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Our mission"
+    },
+    {
+      "type": "html",
+      "id": "headline",
+      "label": "Headline (HTML)",
+      "default": "More than<br>a <em>thrift store</em>"
+    },
+    {
+      "type": "textarea",
+      "id": "body",
+      "label": "Body text",
+      "default": "Homeboy Threads is the retail arm of Homeboy Industries — the world's largest gang intervention program. When you buy here, you're funding job training, mental health support, and real second chances for people who need it most. The brands we partner with believe in that too."
+    },
+    {
+      "type": "text",
+      "id": "link_text",
+      "label": "Link text",
+      "default": "Learn about Homeboy Industries"
+    },
+    {
+      "type": "url",
+      "id": "link_url",
+      "label": "Link URL",
+      "default": "/pages/our-story"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "stat",
+      "name": "Impact Stat",
+      "limit": 4,
+      "settings": [
+        {
+          "type": "text",
+          "id": "number",
+          "label": "Number",
+          "default": "72%"
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Description",
+          "default": "of our graduates stay out of the justice system permanently"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Mission Strip",
+      "blocks": [
+        { "type": "stat", "settings": { "number": "72%", "label": "of our graduates stay out of the justice system permanently" } },
+        { "type": "stat", "settings": { "number": "10k", "label": "people served by Homeboy Industries each year in Los Angeles" } },
+        { "type": "stat", "settings": { "number": "$0", "label": "of your purchase goes to brand profit. 100% supports the mission." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

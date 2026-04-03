@@ -1,0 +1,173 @@
+<!doctype html>
+<html class="no-js" lang="{{ request.locale.iso_code }}">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, height=device-height, minimum-scale=1.0">
+  <meta name="theme-color" content="{{ settings.color_charcoal }}">
+
+  {%- if settings.favicon != blank -%}
+    <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 32, height: 32 }}">
+  {%- endif -%}
+
+  <title>
+    {%- if template.name == 'index' -%}
+      {{ settings.seo_homepage_title | default: shop.name }}
+    {%- elsif template.name == 'collection' -%}
+      {{ collection.title }} | {{ collection.metafields.custom.seo_title | default: collection.title }} | {{ shop.name }}
+    {%- elsif template.name == 'product' -%}
+      {{ product.title }} | {{ product.vendor }} Resale | {{ shop.name }}
+    {%- else -%}
+      {{ page_title }}{% if current_tags %} &ndash; tagged "{{ current_tags | join: ', ' }}"{% endif %}{% if current_page != 1 %} &ndash; Page {{ current_page }}{% endif %}{% unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless %}
+    {%- endif -%}
+  </title>
+
+  {%- if page_description -%}
+    <meta name="description" content="{{ page_description | escape }}">
+  {%- elsif template.name == 'index' -%}
+    <meta name="description" content="{{ settings.seo_homepage_description | escape }}">
+  {%- endif -%}
+
+  {%- comment -%} Canonical URL {%- endcomment -%}
+  <link rel="canonical" href="{{ canonical_url }}">
+
+  {%- if settings.social_twitter_link != blank -%}
+    <meta name="twitter:site" content="{{ settings.social_twitter_link | split: 'twitter.com/' | last | prepend: '@' }}">
+  {%- endif -%}
+
+  <meta property="og:url" content="{{ canonical_url }}">
+  <meta property="og:title" content="{{ page_title | escape }}">
+  <meta property="og:type" content="website">
+  {%- if page_description -%}
+    <meta property="og:description" content="{{ page_description | escape }}">
+  {%- endif -%}
+  {%- if settings.share_image -%}
+    <meta property="og:image" content="http:{{ settings.share_image | image_url: width: 1200 }}">
+    <meta property="og:image:width" content="1200">
+  {%- endif -%}
+
+  {%- comment -%} Google Fonts — Playfair Display, DM Sans, DM Mono {%- endcomment -%}
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400&display=swap" rel="stylesheet">
+
+  {%- comment -%} Theme CSS {%- endcomment -%}
+  {{ 'base.css' | asset_url | stylesheet_tag }}
+  {{ 'component-product-card.css' | asset_url | stylesheet_tag }}
+  {{ 'sections.css' | asset_url | stylesheet_tag }}
+
+  {{ content_for_header }}
+
+  {%- comment -%} JSON-LD Organization Schema {%- endcomment -%}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "NGO",
+    "name": "Homeboy Threads",
+    "url": "{{ shop.url }}",
+    "description": "{{ settings.seo_homepage_description | escape }}",
+    "parentOrganization": {
+      "@type": "NGO",
+      "name": "Homeboy Industries",
+      "url": "https://www.homeboyindustries.org"
+    },
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Los Angeles",
+      "addressRegion": "CA",
+      "addressCountry": "US"
+    }
+    {%- if settings.social_instagram_link != blank or settings.social_tiktok_link != blank or settings.social_facebook_link != blank -%}
+    ,"sameAs": [
+      {%- if settings.social_instagram_link != blank -%}"{{ settings.social_instagram_link }}"{%- endif -%}
+      {%- if settings.social_tiktok_link != blank -%}{% if settings.social_instagram_link != blank %},{% endif %}"{{ settings.social_tiktok_link }}"{%- endif -%}
+      {%- if settings.social_facebook_link != blank -%}{% if settings.social_instagram_link != blank or settings.social_tiktok_link != blank %},{% endif %}"{{ settings.social_facebook_link }}"{%- endif -%}
+    ]
+    {%- endif -%}
+  }
+  </script>
+
+  {%- if template.name == 'product' -%}
+    {%- assign current_variant = product.selected_or_first_available_variant -%}
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Product",
+      "name": {{ product.title | json }},
+      "url": "{{ shop.url }}{{ product.url }}",
+      "image": [{{ product.featured_image | image_url: width: 1200 | json }}],
+      "description": {{ product.description | strip_html | truncate: 500 | json }},
+      "brand": {
+        "@type": "Brand",
+        "name": {{ product.vendor | json }}
+      },
+      "offers": {
+        "@type": "Offer",
+        "url": "{{ shop.url }}{{ product.url }}",
+        "priceCurrency": {{ cart.currency.iso_code | json }},
+        "price": {{ current_variant.price | money_without_currency | json }},
+        "availability": "{% if current_variant.available %}https://schema.org/InStock{% else %}https://schema.org/OutOfStock{% endif %}",
+        "itemCondition": "{% if product.tags contains 'nwt' %}https://schema.org/NewCondition{% else %}https://schema.org/UsedCondition{% endif %}"
+      }
+    }
+    </script>
+  {%- endif -%}
+
+  {%- if template.name == 'collection' or template.name == 'product' -%}
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "{{ shop.url }}"
+        }
+        {%- if template.name == 'collection' -%}
+        ,{
+          "@type": "ListItem",
+          "position": 2,
+          "name": {{ collection.title | json }},
+          "item": "{{ shop.url }}/collections/{{ collection.handle }}"
+        }
+        {%- endif -%}
+        {%- if template.name == 'product' -%}
+        {%- if product.collections.size > 0 -%}
+        ,{
+          "@type": "ListItem",
+          "position": 2,
+          "name": {{ product.collections.first.title | json }},
+          "item": "{{ shop.url }}/collections/{{ product.collections.first.handle }}"
+        }
+        {%- endif -%}
+        ,{
+          "@type": "ListItem",
+          "position": {% if product.collections.size > 0 %}3{% else %}2{% endif %},
+          "name": {{ product.title | json }},
+          "item": "{{ shop.url }}{{ product.url }}"
+        }
+        {%- endif -%}
+      ]
+    }
+    </script>
+  {%- endif -%}
+</head>
+
+<body class="template-{{ template.name }}{% if template.suffix %} template-{{ template.name }}-{{ template.suffix }}{% endif %}">
+  <a class="skip-to-content-link visually-hidden" href="#MainContent">
+    {{ 'accessibility.skip_to_text' | t }}
+  </a>
+
+  {%- sections 'header-group' -%}
+
+  <main id="MainContent" class="content-for-layout" role="main" tabindex="-1">
+    {{ content_for_layout }}
+  </main>
+
+  {%- sections 'footer-group' -%}
+
+  {{ 'theme.js' | asset_url | script_tag }}
+</body>
+</html>

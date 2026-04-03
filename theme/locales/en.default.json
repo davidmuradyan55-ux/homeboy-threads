@@ -1,0 +1,115 @@
+{
+  "general": {
+    "password_page": {
+      "login_form_heading": "Enter store using password:",
+      "login_password_button": "Enter using password",
+      "admin_link_html": "Are you the store owner? <a href=\"/admin\">Log in here</a>",
+      "store_owner_heading": "Opening soon",
+      "store_owner_info": "Your store will be available soon."
+    },
+    "social": {
+      "alt_text": {
+        "share_on_facebook": "Share on Facebook",
+        "share_on_twitter": "Tweet on Twitter",
+        "share_on_pinterest": "Pin on Pinterest"
+      },
+      "links": {
+        "instagram": "Instagram",
+        "tiktok": "TikTok",
+        "facebook": "Facebook",
+        "twitter": "Twitter"
+      }
+    },
+    "search": {
+      "search": "Search",
+      "placeholder": "Search products..."
+    }
+  },
+  "accessibility": {
+    "skip_to_text": "Skip to content",
+    "close": "Close",
+    "menu": "Menu",
+    "cart": "Cart",
+    "search": "Search",
+    "wishlist_add": "Add to wishlist",
+    "wishlist_remove": "Remove from wishlist"
+  },
+  "products": {
+    "product": {
+      "add_to_cart": "Add to Cart",
+      "sold_out": "Sold Out",
+      "quick_add": "Quick Add",
+      "added": "Added!",
+      "condition": {
+        "nwt": "New With Tags",
+        "grade_a": "Grade A — Like new, minimal signs of wear",
+        "grade_b": "Grade B — Good condition, minor wear visible"
+      },
+      "donated_by": "Donated by {{ vendor }}",
+      "impact_line": "Sale funds {{ hours }} hrs job training",
+      "savings": "Save {{ percent }}%"
+    }
+  },
+  "collections": {
+    "general": {
+      "all": "All",
+      "view_all": "View all",
+      "no_matches": "No products match your filters."
+    },
+    "filters": {
+      "size": "Size",
+      "condition": "Condition",
+      "brand": "Brand",
+      "price": "Price",
+      "clear_all": "Clear all"
+    }
+  },
+  "cart": {
+    "general": {
+      "title": "Cart",
+      "empty": "Your cart is empty",
+      "continue_shopping": "Continue shopping",
+      "subtotal": "Subtotal",
+      "checkout": "Checkout",
+      "note": "Order note",
+      "remove": "Remove"
+    }
+  },
+  "newsletter": {
+    "label": "Email",
+    "placeholder": "your@email.com",
+    "submit": "Get early access",
+    "success": "Thanks for subscribing! Watch your inbox for the next drop.",
+    "error": "Something went wrong. Please try again."
+  },
+  "sections": {
+    "announcement_bar": {
+      "default_message": "New donation drop — limited quantities. Free shipping over $75 →"
+    },
+    "hero": {
+      "default_eyebrow": "Donated by brands. Worn for good.",
+      "default_headline": "Fashion that <em>funds futures</em>",
+      "default_subheadline": "Premium brands donate their overstock to us. We sell it at accessible prices. Every purchase funds job training and reentry programs through Homeboy Industries."
+    },
+    "mission": {
+      "default_eyebrow": "Our mission",
+      "default_headline": "More than a <em>thrift store</em>",
+      "link_text": "Learn about Homeboy Industries"
+    },
+    "how_it_works": {
+      "default_headline": "How it <em>works</em>"
+    },
+    "email_capture": {
+      "default_headline": "Be first for the next drop",
+      "perks": {
+        "drops": "New drop alerts",
+        "brands": "Brand-specific notifs",
+        "impact": "Impact updates",
+        "spam": "No spam"
+      }
+    },
+    "footer": {
+      "mission_tagline": "Every purchase funds a second chance."
+    }
+  }
+}

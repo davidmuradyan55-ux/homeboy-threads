@@ -1,0 +1,134 @@
+{%- comment -%}
+  Section: Main Collection
+  Collection page with filters and product grid
+{%- endcomment -%}
+
+{%- comment -%} Collection Header {%- endcomment -%}
+<div class="collection-header">
+  <h1 class="collection-header__title">{{ collection.title }}</h1>
+  {%- if collection.description != blank -%}
+    <div class="collection-header__description">{{ collection.description }}</div>
+  {%- endif -%}
+</div>
+
+{%- comment -%} Layout: Filters + Grid {%- endcomment -%}
+<div class="collection-layout">
+  {%- comment -%} Filter Sidebar {%- endcomment -%}
+  <aside class="collection-filters" role="complementary" aria-label="Product filters">
+    {%- comment -%} Size Filter {%- endcomment -%}
+    <div class="filter-group">
+      <h3 class="filter-group__title">{{ 'collections.filters.size' | t }}</h3>
+      <div class="filter-group__options">
+        {%- assign sizes = 'XS,S,M,L,XL,XXL' | split: ',' -%}
+        {%- for size in sizes -%}
+          <label class="filter-group__option">
+            <input type="checkbox" name="filter.size" value="{{ size }}">
+            {{ size }}
+          </label>
+        {%- endfor -%}
+      </div>
+    </div>
+
+    {%- comment -%} Condition Filter {%- endcomment -%}
+    <div class="filter-group">
+      <h3 class="filter-group__title">{{ 'collections.filters.condition' | t }}</h3>
+      <div class="filter-group__options">
+        <label class="filter-group__option">
+          <input type="checkbox" name="filter.condition" value="nwt">
+          New With Tags
+        </label>
+        <label class="filter-group__option">
+          <input type="checkbox" name="filter.condition" value="grade-a">
+          Grade A
+        </label>
+        <label class="filter-group__option">
+          <input type="checkbox" name="filter.condition" value="grade-b">
+          Grade B
+        </label>
+      </div>
+    </div>
+
+    {%- comment -%} Brand Filter {%- endcomment -%}
+    <div class="filter-group">
+      <h3 class="filter-group__title">{{ 'collections.filters.brand' | t }}</h3>
+      <div class="filter-group__options">
+        {%- assign vendors = collection.all_vendors -%}
+        {%- for vendor in vendors -%}
+          <label class="filter-group__option">
+            <input type="checkbox" name="filter.vendor" value="{{ vendor | handleize }}">
+            {{ vendor }}
+          </label>
+        {%- endfor -%}
+      </div>
+    </div>
+
+    {%- comment -%} Price Filter {%- endcomment -%}
+    <div class="filter-group">
+      <h3 class="filter-group__title">{{ 'collections.filters.price' | t }}</h3>
+      <div class="filter-group__options">
+        <label class="filter-group__option">
+          <input type="checkbox" name="filter.price" value="under-25">
+          Under $25
+        </label>
+        <label class="filter-group__option">
+          <input type="checkbox" name="filter.price" value="25-50">
+          $25 - $50
+        </label>
+        <label class="filter-group__option">
+          <input type="checkbox" name="filter.price" value="50-100">
+          $50 - $100
+        </label>
+        <label class="filter-group__option">
+          <input type="checkbox" name="filter.price" value="100-plus">
+          $100+
+        </label>
+      </div>
+    </div>
+  </aside>
+
+  {%- comment -%} Product Grid {%- endcomment -%}
+  <div>
+    <div class="product-grid">
+      {%- paginate collection.products by 24 -%}
+        {%- for product in collection.products -%}
+          {% render 'product-card', product: product %}
+        {%- else -%}
+          <p>{{ 'collections.general.no_matches' | t }}</p>
+        {%- endfor -%}
+      {%- endpaginate -%}
+    </div>
+
+    {%- if paginate.pages > 1 -%}
+      <nav class="pagination" style="margin-top:40px;text-align:center;">
+        {{ paginate | default_pagination }}
+      </nav>
+    {%- endif -%}
+  </div>
+</div>
+
+{%- comment -%} SEO Description Block {%- endcomment -%}
+{%- if collection.metafields.custom.seo_description != blank -%}
+  <div class="collection-seo-text">
+    {{ collection.metafields.custom.seo_description | metafield_tag }}
+  </div>
+{%- elsif section.settings.seo_text != blank -%}
+  <div class="collection-seo-text">
+    {{ section.settings.seo_text }}
+  </div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Collection Grid",
+  "tag": "section",
+  "class": "main-collection-section",
+  "settings": [
+    {
+      "type": "textarea",
+      "id": "seo_text",
+      "label": "SEO description text (fallback if no metafield)",
+      "info": "~150 words of keyword-rich copy shown below the product grid."
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,111 @@
+{%- comment -%}
+  Section: Email Capture
+  Forest green background, newsletter signup
+{%- endcomment -%}
+
+<section class="email-capture">
+  {%- comment -%} Left — Text {%- endcomment -%}
+  <div class="email-capture__left">
+    <p class="email-capture__eyebrow">{{ section.settings.eyebrow }}</p>
+    <h2 class="email-capture__headline">{{ section.settings.headline }}</h2>
+    <p class="email-capture__body">{{ section.settings.body }}</p>
+  </div>
+
+  {%- comment -%} Right — Form {%- endcomment -%}
+  <div class="email-capture__right">
+    <form class="email-capture__form" action="/contact#contact_form" method="post" accept-charset="UTF-8">
+      <input type="hidden" name="form_type" value="customer">
+      <input type="hidden" name="utf8" value="✓">
+      <input type="hidden" name="customer[tags]" value="newsletter">
+      <label for="email-capture-{{ section.id }}" class="visually-hidden">{{ 'newsletter.label' | t }}</label>
+      <input
+        type="email"
+        name="customer[email]"
+        id="email-capture-{{ section.id }}"
+        class="email-capture__input"
+        placeholder="{{ 'newsletter.placeholder' | t }}"
+        required
+        autocomplete="email"
+      >
+      <button type="submit" class="email-capture__submit">{{ section.settings.button_text }}</button>
+    </form>
+
+    <div class="email-capture__perks">
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'perk' -%}
+          <span class="email-capture__perk" {{ block.shopify_attributes }}>{{ block.settings.text }}</span>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+
+    <div class="email-capture__success">
+      {{ section.settings.success_message }}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Email Capture",
+  "tag": "section",
+  "class": "email-capture-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Drop notifications"
+    },
+    {
+      "type": "html",
+      "id": "headline",
+      "label": "Headline (HTML)",
+      "default": "Be first for<br>the next drop"
+    },
+    {
+      "type": "textarea",
+      "id": "body",
+      "label": "Body text",
+      "default": "New donations arrive weekly. Join our list to get early access to new arrivals from your favorite brands — before they sell out."
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button text",
+      "default": "Get early access"
+    },
+    {
+      "type": "text",
+      "id": "success_message",
+      "label": "Success message",
+      "default": "Thanks for subscribing! Watch your inbox for the next drop."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "perk",
+      "name": "Perk Tag",
+      "limit": 6,
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Perk text",
+          "default": "New drop alerts"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Email Capture",
+      "blocks": [
+        { "type": "perk", "settings": { "text": "New drop alerts" } },
+        { "type": "perk", "settings": { "text": "Brand-specific notifs" } },
+        { "type": "perk", "settings": { "text": "Impact updates" } },
+        { "type": "perk", "settings": { "text": "No spam" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

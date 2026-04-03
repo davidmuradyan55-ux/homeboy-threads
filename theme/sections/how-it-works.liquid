@@ -1,0 +1,74 @@
+{%- comment -%}
+  Section: How It Works
+  3-column grid with numbered steps
+{%- endcomment -%}
+
+<section class="how-it-works">
+  <div class="section-eyebrow">{{ section.settings.eyebrow }}</div>
+  <h2 class="section-title">{{ section.settings.headline }}</h2>
+
+  <div class="how-it-works__grid">
+    {%- for block in section.blocks -%}
+      {%- if block.type == 'step' -%}
+        <div class="how-it-works__step" {{ block.shopify_attributes }}>
+          <div class="how-it-works__number">{{ forloop.index | prepend: '0' | slice: -2, 2 }}</div>
+          <h3 class="how-it-works__title">{{ block.settings.title }}</h3>
+          <p class="how-it-works__body">{{ block.settings.body }}</p>
+        </div>
+      {%- endif -%}
+    {%- endfor -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "How It Works",
+  "tag": "section",
+  "class": "how-it-works-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "The model"
+    },
+    {
+      "type": "html",
+      "id": "headline",
+      "label": "Headline (HTML)",
+      "default": "How it <em>works</em>"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "step",
+      "name": "Step",
+      "limit": 6,
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Step title",
+          "default": "Step title"
+        },
+        {
+          "type": "textarea",
+          "id": "body",
+          "label": "Step description",
+          "default": "Step description goes here."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "How It Works",
+      "blocks": [
+        { "type": "step", "settings": { "title": "Brands donate", "body": "Premium brands like Reformation and Guess donate overstock, samples, and returned items to us instead of sending them to landfill. Every piece is inspected and graded before it hits our store." } },
+        { "type": "step", "settings": { "title": "You shop", "body": "Browse curated pieces from real brands at 50–70% below retail. Each listing includes the brand, condition grade, measurements, and a direct line to the impact your purchase creates." } },
+        { "type": "step", "settings": { "title": "We fund futures", "body": "Every dollar of revenue goes straight back into Homeboy Industries programming — job training, mental health services, tattoo removal, and reentry support for men and women in Los Angeles." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

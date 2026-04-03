@@ -1,0 +1,37 @@
+{
+  "meta_titles": {
+    "homepage": "Homeboy Threads — Donated Designer Clothing | Shop for Good",
+    "collection_dresses": "Women's Dresses | Donated Designer Resale | Homeboy Threads",
+    "collection_designer_donated": "Designer Donated Clothing | Sustainable Resale | Homeboy Threads",
+    "collection_new_with_tags": "New With Tags Clothing | NWT Designer Resale | Homeboy Threads",
+    "product": "[Product Title] | [Brand] Resale | Homeboy Threads"
+  },
+  "meta_descriptions": {
+    "homepage": "Shop donated clothing from premium brands. Every purchase funds reentry programs and job training through Homeboy Industries in Los Angeles. Free shipping on orders over $75.",
+    "collection_default": "Shop [collection name] donated by leading fashion brands. Condition-graded, authentically sourced, mission-driven resale. Every purchase funds Homeboy Industries programs.",
+    "collection_dresses": "Shop women's dresses donated by leading fashion brands like Reformation and Guess. Condition-graded, authentically sourced, mission-driven resale. Every purchase funds Homeboy Industries programs.",
+    "collection_designer_donated": "Shop designer donated clothing from premium brands. Sustainably sourced overstock and samples, condition-graded and priced 50-70% below retail. Every purchase funds Homeboy Industries.",
+    "collection_new_with_tags": "Shop new with tags clothing from designer brands. Never-worn, brand-new pieces at resale prices. Donated by premium brands, with every purchase funding Homeboy Industries reentry programs."
+  },
+  "collection_seo_descriptions": {
+    "dresses": "Discover donated designer dresses from brands like Reformation, Guess, and Anthropologie at Homeboy Threads. Every dress in our collection has been donated directly by brand partners and condition-graded by our team. From midi dresses and mini dresses to maxi styles and going-out pieces, find premium fashion at 50-70% below retail. Every dress purchase directly funds job training, mental health services, and reentry programming through Homeboy Industries in Los Angeles. Shop sustainably, support second chances, and wear something that matters.",
+    "tops": "Shop donated designer tops and blouses from premium brands at Homeboy Threads. Our collection features silk blouses, crop tops, tanks, tees, and statement pieces donated directly by brand partners like Reformation, Madewell, and Anthropologie. Every top is condition-graded (NWT, Grade A, or Grade B) so you know exactly what you're getting. Prices run 50-70% below retail, and 100% of proceeds fund Homeboy Industries' gang intervention and reentry programs in Los Angeles.",
+    "denim": "Find donated designer denim from Guess, Levi's, Madewell, and more at Homeboy Threads. Our denim collection includes high-rise skinny jeans, wide-leg trousers, denim shorts, and classic straight cuts — all donated by brand partners and graded for condition. Shop premium denim at fraction-of-retail prices while funding job training and reentry support through Homeboy Industries.",
+    "outerwear": "Shop donated jackets, coats, blazers, and sweaters from designer brands at Homeboy Threads. Every outerwear piece in our collection was donated directly by brand partners and inspected by our team. From Reformation blazers to Guess moto jackets, find premium outerwear at resale prices. Every purchase funds Homeboy Industries' programming in Los Angeles.",
+    "new-with-tags": "Shop brand-new, never-worn clothing with original tags still attached at Homeboy Threads. Our NWT collection features designer pieces from Reformation, Guess, Madewell, and more — donated as overstock and samples. Get brand-new designer clothing at 50-70% below retail, with every purchase funding job training and reentry programs through Homeboy Industries.",
+    "designer-donated": "Browse our full collection of designer donated clothing at Homeboy Threads. Premium brands like Reformation, Guess, Levi's, Madewell, Anthropologie, and Banana Republic donate their overstock, samples, and returns directly to us. Every piece is condition-graded and priced at 50-70% below retail. 100% of proceeds fund Homeboy Industries' gang intervention, job training, and mental health programs in Los Angeles."
+  },
+  "structured_data": {
+    "organization": {
+      "type": "NGO",
+      "name": "Homeboy Threads",
+      "parent": "Homeboy Industries",
+      "location": "Los Angeles, CA"
+    },
+    "product_condition_mapping": {
+      "nwt": "https://schema.org/NewCondition",
+      "grade-a": "https://schema.org/UsedCondition",
+      "grade-b": "https://schema.org/UsedCondition"
+    }
+  }
+}
