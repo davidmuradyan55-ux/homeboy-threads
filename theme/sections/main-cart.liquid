@@ -1,0 +1,49 @@
+{%- comment -%}
+  Section: Cart Page
+{%- endcomment -%}
+
+<div style="padding: 60px var(--page-gutter, 40px); max-width: 900px; margin: 0 auto;">
+  <h1 style="font-family: var(--serif); font-size: 42px; font-weight: 400; margin-bottom: 40px;">{{ 'cart.general.title' | t }}</h1>
+
+  {%- if cart.item_count > 0 -%}
+    <form action="/cart" method="post" id="cart">
+      {%- for item in cart.items -%}
+        <div style="display:flex;gap:20px;padding:24px 0;border-bottom:1px solid var(--border);align-items:center;">
+          {%- if item.image -%}
+            <a href="{{ item.url }}" style="flex-shrink:0;">
+              <img src="{{ item.image | image_url: width: 120 }}" alt="{{ item.title | escape }}" width="80" height="107" style="background:var(--cream);object-fit:cover;">
+            </a>
+          {%- endif -%}
+          <div style="flex:1;">
+            <div style="font-family:var(--mono);font-size:10px;color:var(--muted);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:4px;">{{ item.vendor }}</div>
+            <a href="{{ item.url }}" style="font-family:var(--serif);font-size:16px;text-decoration:none;color:var(--charcoal);">{{ item.title }}</a>
+            {%- unless item.variant.title == 'Default Title' -%}
+              <div style="font-size:13px;color:var(--mid);margin-top:4px;">{{ item.variant.title }}</div>
+            {%- endunless -%}
+          </div>
+          <div style="font-size:14px;font-weight:500;">{{ item.final_line_price | money }}</div>
+          <a href="/cart/change?id={{ item.key }}&quantity=0" style="font-size:12px;color:var(--muted);text-decoration:none;">{{ 'cart.general.remove' | t }}</a>
+        </div>
+      {%- endfor -%}
+
+      <div style="margin-top:32px;text-align:right;">
+        <div style="font-family:var(--serif);font-size:24px;margin-bottom:16px;">
+          {{ 'cart.general.subtotal' | t }}: {{ cart.total_price | money }}
+        </div>
+        <p style="font-size:12px;color:var(--muted);margin-bottom:20px;">Shipping and taxes calculated at checkout.</p>
+        <button type="submit" name="checkout" class="btn-primary" style="display:inline-block;background:var(--charcoal);color:var(--cream);font-size:13px;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;padding:16px 40px;border:none;cursor:pointer;">{{ 'cart.general.checkout' | t }}</button>
+      </div>
+    </form>
+  {%- else -%}
+    <p style="font-size:15px;color:var(--mid);margin-bottom:32px;">{{ 'cart.general.empty' | t }}</p>
+    <a href="/collections/all" class="btn-primary" style="display:inline-block;background:var(--charcoal);color:var(--cream);font-size:13px;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;padding:14px 28px;text-decoration:none;">{{ 'cart.general.continue_shopping' | t }}</a>
+  {%- endif -%}
+</div>
+
+{% schema %}
+{
+  "name": "Cart Page",
+  "tag": "section",
+  "settings": []
+}
+{% endschema %}

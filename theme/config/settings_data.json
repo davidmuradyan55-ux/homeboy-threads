@@ -19,30 +19,6 @@
     "social_instagram_link": "",
     "social_tiktok_link": "",
     "social_facebook_link": "",
-    "social_twitter_link": "",
-    "sections": {
-      "announcement-bar": {
-        "type": "announcement-bar",
-        "settings": {
-          "message": "New donation drop — limited quantities. Free shipping over $75 →",
-          "link": "/collections/new-with-tags"
-        }
-      },
-      "header": {
-        "type": "header",
-        "settings": {}
-      },
-      "footer": {
-        "type": "footer",
-        "settings": {
-          "tagline": "The retail arm of Homeboy Industries. Premium donated clothing sold to fund reentry programs, job training, and second chances in Los Angeles.",
-          "copyright_text": "Homeboy Threads · A Homeboy Industries initiative · Los Angeles, CA",
-          "mission_text": "Every purchase funds a second chance."
-        }
-      }
-    },
-    "content_for_index": [
-
-    ]
+    "social_twitter_link": ""
   }
 }

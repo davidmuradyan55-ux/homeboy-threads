@@ -54,11 +54,6 @@
         loading="eager"
         fetchpriority="high"
       >
-    {%- else -%}
-      <div class="hero__featured-placeholder"></div>
-    {%- endif -%}
-
-    {%- if featured_product != blank -%}
       <a href="{{ featured_product.url }}" class="hero__product-tag" style="text-decoration:none;">
         <div>
           <div class="hero__tag-brand">Donated by {{ featured_product.vendor }}</div>
@@ -69,6 +64,34 @@
           <span class="hero__tag-price">{{ featured_product.price | money }}</span>
         </div>
       </a>
+    {%- else -%}
+      {%- if section.settings.hero_image != blank -%}
+        <img
+          class="hero__featured-image"
+          src="{{ section.settings.hero_image | image_url: width: 1200 }}"
+          alt="Homeboy Threads featured clothing"
+          width="1200"
+          height="1600"
+          loading="eager"
+          fetchpriority="high"
+        >
+      {%- else -%}
+        <div class="hero__featured-placeholder" style="width:100%;height:100%;background:linear-gradient(160deg,#3A3632 0%,#1C1C1A 60%);display:flex;align-items:center;justify-content:center;">
+          <div style="text-align:center;padding:40px;">
+            <div style="font-family:var(--serif);font-size:48px;color:rgba(245,240,232,0.08);font-weight:600;letter-spacing:-0.03em;line-height:1;">HB</div>
+          </div>
+        </div>
+      {%- endif -%}
+      <div class="hero__product-tag">
+        <div>
+          <div class="hero__tag-brand">{{ section.settings.tag_brand | default: 'Donated by Reformation' }}</div>
+          <div class="hero__tag-name">{{ section.settings.tag_title | default: 'Linen Midi Dress — Ivory' }}</div>
+        </div>
+        <div class="hero__tag-badge-group">
+          <span style="font-family:var(--mono);font-size:10px;background:var(--forest);color:#A8C4AC;padding:3px 8px;border-radius:2px;letter-spacing:0.06em;text-transform:uppercase;">Brand donated</span>
+          <span class="hero__tag-price">{{ section.settings.tag_price | default: '$68' }}</span>
+        </div>
+      </div>
     {%- endif -%}
   </div>
 </section>
@@ -125,6 +148,29 @@
       "type": "product",
       "id": "featured_product",
       "label": "Featured product (leave blank for auto)"
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_image",
+      "label": "Hero image (fallback if no product selected)"
+    },
+    {
+      "type": "text",
+      "id": "tag_brand",
+      "label": "Product tag — brand line",
+      "default": "Donated by Reformation"
+    },
+    {
+      "type": "text",
+      "id": "tag_title",
+      "label": "Product tag — title",
+      "default": "Linen Midi Dress — Ivory"
+    },
+    {
+      "type": "text",
+      "id": "tag_price",
+      "label": "Product tag — price",
+      "default": "$68"
     }
   ],
   "blocks": [
