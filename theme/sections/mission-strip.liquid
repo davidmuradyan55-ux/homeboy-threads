@@ -14,19 +14,33 @@
     {%- endif -%}
   </div>
 
-  {%- comment -%} Right — Stats {%- endcomment -%}
-  <div class="mission-strip__stats">
-    {%- for block in section.blocks -%}
-      {%- if block.type == 'stat' -%}
-        {%- unless forloop.first -%}
-          <div class="mission-strip__stat-divider" aria-hidden="true"></div>
-        {%- endunless -%}
-        <div class="mission-strip__stat" {{ block.shopify_attributes }}>
-          <span class="mission-strip__stat-number">{{ block.settings.number }}</span>
-          <span class="mission-strip__stat-label">{{ block.settings.label }}</span>
-        </div>
-      {%- endif -%}
-    {%- endfor -%}
+  {%- comment -%} Right — Image + Stats {%- endcomment -%}
+  <div class="mission-strip__right">
+    {%- if section.settings.mission_image != blank -%}
+      <div class="mission-strip__image">
+        <img
+          src="{{ section.settings.mission_image | image_url: width: 800 }}"
+          alt="{{ section.settings.mission_image.alt | default: 'Homeboy Threads team' }}"
+          width="800"
+          height="500"
+          loading="lazy"
+          style="width:100%;height:100%;object-fit:cover;border-radius:8px;"
+        >
+      </div>
+    {%- endif -%}
+    <div class="mission-strip__stats">
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'stat' -%}
+          {%- unless forloop.first -%}
+            <div class="mission-strip__stat-divider" aria-hidden="true"></div>
+          {%- endunless -%}
+          <div class="mission-strip__stat" {{ block.shopify_attributes }}>
+            <span class="mission-strip__stat-number">{{ block.settings.number }}</span>
+            <span class="mission-strip__stat-label">{{ block.settings.label }}</span>
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
   </div>
 </section>
 
@@ -63,8 +77,12 @@
     {
       "type": "url",
       "id": "link_url",
-      "label": "Link URL",
-      "default": "/pages/our-story"
+      "label": "Link URL"
+    },
+    {
+      "type": "image_picker",
+      "id": "mission_image",
+      "label": "Mission image"
     }
   ],
   "blocks": [

@@ -7,9 +7,7 @@
         "headline": "Fashion that<br><em>funds futures</em>",
         "subheadline": "Premium brands like Reformation and Guess donate their overstock to us. We sell it at accessible prices. Every purchase funds job training and reentry programs through Homeboy Industries.",
         "cta_primary_text": "Shop New Arrivals",
-        "cta_primary_url": "/collections/new-with-tags",
-        "cta_ghost_text": "Our Story",
-        "cta_ghost_url": "/pages/our-story"
+        "cta_ghost_text": "Our Story"
       },
       "blocks": {
         "stat_1": {
@@ -64,8 +62,7 @@
         "eyebrow": "Our mission",
         "headline": "More than<br>a <em>thrift store</em>",
         "body": "Homeboy Threads is the retail arm of Homeboy Industries — the world's largest gang intervention program. When you buy here, you're funding job training, mental health support, and real second chances for people who need it most. The brands we partner with believe in that too.",
-        "link_text": "Learn about Homeboy Industries",
-        "link_url": "/pages/our-story"
+        "link_text": "Learn about Homeboy Industries"
       },
       "blocks": {
         "s1": { "type": "stat", "settings": { "number": "72%", "label": "of our graduates stay out of the justice system permanently" } },

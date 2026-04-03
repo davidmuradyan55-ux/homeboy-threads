@@ -58,13 +58,29 @@
 
   {{ content_for_header }}
 
+  {%- comment -%} JSON-LD WebSite Schema (enables sitelinks search) {%- endcomment -%}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Homeboy Threads",
+    "url": "{{ shop.url }}",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "{{ shop.url }}/search?q={search_term_string}",
+      "query-input": "required name=search_term_string"
+    }
+  }
+  </script>
+
   {%- comment -%} JSON-LD Organization Schema {%- endcomment -%}
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "NGO",
+    "@type": ["NGO", "Store"],
     "name": "Homeboy Threads",
     "url": "{{ shop.url }}",
+    "logo": "{{ 'logo.png' | asset_url }}",
     "description": "{{ settings.seo_homepage_description | escape }}",
     "parentOrganization": {
       "@type": "NGO",
