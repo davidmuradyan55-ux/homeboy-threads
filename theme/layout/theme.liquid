@@ -184,6 +184,57 @@
 
   {%- sections 'footer-group' -%}
 
+  {%- comment -%} Cart Drawer {%- endcomment -%}
+  <div class="cart-drawer__overlay" data-cart-overlay></div>
+  <aside class="cart-drawer" aria-label="Shopping cart" data-cart-drawer>
+    <div class="cart-drawer__header">
+      <h2 class="cart-drawer__title">Your Cart</h2>
+      <button class="cart-drawer__close" aria-label="Close cart" data-cart-close>&times;</button>
+    </div>
+    <div class="cart-drawer__body" data-cart-body>
+      {%- if cart.item_count > 0 -%}
+        {%- for item in cart.items -%}
+          <div class="cart-drawer__item" data-cart-item data-line="{{ forloop.index }}">
+            <a href="{{ item.url }}" class="cart-drawer__item-image">
+              {%- if item.image -%}
+                <img src="{{ item.image | image_url: width: 200 }}" alt="{{ item.title | escape }}" width="80" height="100" loading="lazy">
+              {%- endif -%}
+            </a>
+            <div class="cart-drawer__item-info">
+              <div class="cart-drawer__item-vendor">{{ item.vendor }}</div>
+              <a href="{{ item.url }}" class="cart-drawer__item-title">{{ item.title }}</a>
+              {%- unless item.variant.title == 'Default Title' -%}
+                <div class="cart-drawer__item-variant">{{ item.variant.title }}</div>
+              {%- endunless -%}
+              <div class="cart-drawer__item-bottom">
+                <div class="cart-drawer__qty">
+                  <button class="cart-drawer__qty-btn" data-qty-minus aria-label="Decrease quantity">&minus;</button>
+                  <span class="cart-drawer__qty-val" data-qty-val>{{ item.quantity }}</span>
+                  <button class="cart-drawer__qty-btn" data-qty-plus aria-label="Increase quantity">&plus;</button>
+                </div>
+                <span class="cart-drawer__item-price">{{ item.final_line_price | money }}</span>
+              </div>
+            </div>
+            <button class="cart-drawer__item-remove" data-cart-remove aria-label="Remove {{ item.title | escape }}">&times;</button>
+          </div>
+        {%- endfor -%}
+      {%- else -%}
+        <div class="cart-drawer__empty">
+          <p>Your cart is empty</p>
+          <a href="/collections/all" class="cart-drawer__continue">Continue Shopping</a>
+        </div>
+      {%- endif -%}
+    </div>
+    <div class="cart-drawer__footer" data-cart-footer {% if cart.item_count == 0 %}style="display:none"{% endif %}>
+      <div class="cart-drawer__subtotal">
+        <span>Subtotal</span>
+        <span data-cart-subtotal>{{ cart.total_price | money }}</span>
+      </div>
+      <p class="cart-drawer__note">Shipping & taxes calculated at checkout</p>
+      <a href="/checkout" class="cart-drawer__checkout">Checkout</a>
+    </div>
+  </aside>
+
   {{ 'theme.js' | asset_url | script_tag }}
 </body>
 </html>
