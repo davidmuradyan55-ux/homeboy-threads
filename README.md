@@ -113,33 +113,40 @@ Create these collections in Shopify Admin → Products → Collections:
 
 - **Our Story** (`/pages/our-story`): Assign the `page.our-story` template
 
-## Product Import Pipeline (Optional)
+## Product Migration from Source Store
 
-The `/scripts` directory contains a Node.js script that scrapes Poshmark and Depop listings and formats them for Shopify import.
+The `/scripts/migrate-products.js` script fetches all products from the source store (`shop.homeboythreads.com`) and converts them into a Shopify-compatible import CSV.
 
-### Setup
+### What the script does
 
-```bash
-cd scripts
-npm install
-```
+- Fetches all products via the Shopify storefront `/products.json` API, paginating through all pages
+- Preserves title, description (HTML), vendor, images (in order), and all variants with their options (Color, Size, Condition)
+- Adds the `designer-donated` tag to every product
+- Adds the `nwt` tag to any product with a "New with Tags" option value
+- Sets `Variant Inventory Qty` to 1 and `Variant Inventory Policy` to deny for all variants
+- Sets `Published` to TRUE and `Status` to active
+- Generates an SEO Title in the format: `[Product Title] | [Vendor] Resale | Homeboy Threads`
+- Outputs additional image-only rows (Handle + Image Src) for products with multiple images
 
 ### Run
 
 ```bash
-node import-listings.js
+node scripts/migrate-products.js
 ```
+
+No dependencies required — uses only Node.js built-in modules (`https`, `fs`, `path`).
 
 ### Output
 
-Generates `output/shopify-import.csv` in Shopify's product import format.
+Generates `output/homeboy-products-import.csv` in the exact Shopify product import CSV format, plus a summary showing total products, variants, images, and vendor breakdown.
 
 ### Import to Shopify
 
 1. Go to **Shopify Admin → Products → Import**
-2. Upload `shopify-import.csv`
-3. Review the preview, then confirm import
-4. Re-running the script generates a new CSV — Shopify matches by Handle to update existing products rather than creating duplicates
+2. Click **Add file** and upload `output/homeboy-products-import.csv`
+3. Review the preview — check that products, variants, and images look correct
+4. **Check the "Overwrite products with matching handles" box** to update existing products instead of creating duplicates
+5. Click **Import products** and wait for the import to complete
 
 ## SEO
 
